@@ -34,7 +34,7 @@ body{
   white-space:nowrap;padding:.2rem .5rem;background:var(--glass-dark);
   border:1px solid rgba(255,255,255,.45);border-radius:6px;font-size:.7rem;box-shadow:0 2px 6px #000}
 
-/* ---------- draggable widgets ---------- */
+/* ---------- widgets ---------- */
 .widget{
   position:absolute;padding:.8rem;cursor:move;max-width:350px;
   backdrop-filter:blur(20px) saturate(150%);background:var(--glass);
@@ -52,8 +52,7 @@ body{
 
 /* Start orb */
 #start-btn{
-  position:absolute;bottom:1px;left:6px;z-index:30;           /* lowered for top gap */
-  border:none;background:none;cursor:pointer}
+  position:absolute;bottom:1px;left:6px;z-index:30;border:none;background:none;cursor:pointer}
 #start-btn img{height:48px;width:48px;border-radius:50%;box-shadow:0 2px 6px #0006}
 
 /* Peek button */
@@ -88,7 +87,8 @@ body{
   .userpic{
     width:60px;height:60px;border-radius:4px;margin:0 auto .8rem;
     border:2px solid rgba(255,255,255,.9);box-shadow:0 0 6px #000a}
-  .start-right .username{font-weight:700;color:#fff;margin:.6rem 0 1rem}
+  .start-right .username{
+    font-weight:700;color:#fff;text-shadow:0 0 5px #000;margin:.6rem 0 1rem}
 
 /* bottom strip */
 .start-bottom{
@@ -98,7 +98,7 @@ body{
   flex:1;height:22px;border:1px solid #6d6d6d;border-radius:2px;padding:0 4px;
   background:#fff;color:#000;font-size:.78rem}
 .shutdown{
-  background:#e6e6e6;border:1px solid #7f7f7f;border-radius:2px;padding:.2rem .55rem;/* slimmer */
+  background:#e6e6e6;border:1px solid #7f7f7f;border-radius:2px;padding:.2rem .45rem; /* slimmer */
   font-size:.78rem;font-weight:600;color:#000;display:flex;align-items:center;gap:.3rem;cursor:pointer}
 .shutdown:hover{background:#f5f5f5}
 .shutdown::after{content:"▼";font-size:.55rem;margin-top:-2px}
@@ -142,9 +142,7 @@ body{
 <!-- Taskbar -->
 <div id="taskbar">
   <button id="start-btn"><img src="start.png" alt="Start"></button>
-  <div id="tray">
-    <img src="tray1.png"><img src="tray2.png"><img src="tray3.png">
-  </div>
+  <div id="tray"><img src="tray1.png"><img src="tray2.png"><img src="tray3.png"></div>
   <div id="taskbar-clock"></div>
   <div id="peek" title="Show desktop"></div>
 </div>
@@ -176,12 +174,12 @@ body{
 <div id="toast">Discord username copied!</div>
 
 <script>
-/* toast helper */
-function toast(msg){
+/* toast */
+const toast=(msg)=>{
   const t=document.getElementById('toast');
   t.textContent=msg;t.style.display='block';
   setTimeout(()=>t.style.display='none',3000);
-}
+};
 
 /* Discord copy */
 document.getElementById('discord-link').onclick=e=>{
@@ -190,14 +188,13 @@ document.getElementById('discord-link').onclick=e=>{
 };
 
 /* Start menu toggle */
-const startBtn=document.getElementById('start-btn'),
-      startMenu=document.getElementById('start-menu');
+const startBtn=document.getElementById('start-btn'),startMenu=document.getElementById('start-menu');
 startBtn.addEventListener('click',e=>{
   e.stopPropagation();
   startMenu.style.display=(startMenu.style.display==='block')?'none':'block';
 });
 startMenu.addEventListener('click',e=>e.stopPropagation());
-document.addEventListener('click',()=>{startMenu.style.display='none';});
+document.addEventListener('click',()=>startMenu.style.display='none');
 
 /* Clock */
 function updateClock(){
