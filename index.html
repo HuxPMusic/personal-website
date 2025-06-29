@@ -2,13 +2,20 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Mitch &quot;Michelle&quot; Bentz</title>
+  <title>Mitch &quot;Michelle&quot; Bentz | Personal Site</title>
   <!-- Google Font for a soft, rounded look -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;700&display=swap" rel="stylesheet">
+  <!-- Favicon -->
+  <link rel="icon" href="favicon.png" type="image/png" sizes="32x32">
   <style>
     /* === Base layout === */
+    :root{
+      --ribbon-bg:rgba(255,255,255,.25); /* translucent white */
+      --accent-pink:#ffbbf4;
+      --accent-yellow:#ffeb3b;
+    }
     html,body{
       margin:0;
       height:100%;
@@ -16,14 +23,37 @@
     body{
       display:flex;
       flex-direction:column;
-      justify-content:center;
+      justify-content:flex-start;
       align-items:center;
-      /* pastel party backdrop (replace banner.png with actual file name) */
       background:url('background.png') center/cover no-repeat fixed;
       font-family:'Fredoka',sans-serif;
       text-shadow:0 0 10px rgba(0,0,0,.25);
       color:#fff;
     }
+
+    /* === Sticky header navigation === */
+    header{
+      position:fixed;
+      top:0;left:0;right:0;
+      z-index:10;
+      display:flex;
+      justify-content:center;
+      backdrop-filter:blur(6px);
+      background:rgba(0,0,0,.35);
+      padding:.6rem 0;
+    }
+    nav a{
+      margin:0 1rem;
+      color:#fff;
+      text-decoration:none;
+      font-weight:700;
+      letter-spacing:.03em;
+      transition:opacity .2s;
+    }
+    nav a:hover{opacity:.75;}
+
+    /* push body down so marquee isn’t hidden behind header */
+    .spacer{height:3rem;}
 
     /* === Marquee heading === */
     marquee{
@@ -32,36 +62,69 @@
       font-weight:700;
       letter-spacing:.05em;
       padding:.5rem 0;
-      /* translucent ribbon so text remains legible over busy art */
-      background:rgba(255,255,255,.25);
+      background:var(--ribbon-bg);
       backdrop-filter:blur(4px);
-      color:#ffbbf4; /* soft magenta pulled from balloons */
+      color:var(--accent-pink);
     }
 
     /* === Flashing WIP tag === */
     #wip{
-      margin-top:2rem;
+      margin:2.5rem 0 .5rem;
       font-size:2.5rem;
-      color:#ffeb3b; /* star‑yellow accent */
+      color:var(--accent-yellow);
       animation:flash 1s steps(2,start) infinite;
     }
-    @keyframes flash{
-      0%, 49% {opacity:0;}
-      50%,100%{opacity:1;}
+    @keyframes flash{0%,49%{opacity:0;}50%,100%{opacity:1;}}
+
+    /* === Info card === */
+    .card{
+      max-width:520px;
+      padding:1.5rem 2rem;
+      margin-bottom:4rem;
+      background:var(--ribbon-bg);
+      backdrop-filter:blur(6px);
+      border-radius:1rem;
+      box-shadow:0 0 12px rgba(0,0,0,.25);
     }
+    .card h2{margin-top:0;color:#fff;}
+    .card p{margin:.6rem 0 0;line-height:1.45;}
+    .card a{color:var(--accent-pink);text-decoration:none;font-weight:700;}
+    .card a:hover{text-decoration:underline;}
 
     /* small devices */
     @media(max-width:600px){
       marquee{font-size:2.5rem;}
       #wip{font-size:1.8rem;}
+      .card{margin:1rem 1rem 3rem;padding:1rem 1.25rem;}
     }
   </style>
 </head>
 <body>
+  <!-- === top nav === -->
+  <header>
+    <nav>
+      <a href="https://huxpmusic.com" target="_blank" rel="noopener">HuxP Music</a>
+      <a href="https://shikitaigen.com" target="_blank" rel="noopener">Shiki Taigen Blog</a>
+      <!-- add future links here -->
+    </nav>
+  </header>
+
+  <div class="spacer"></div>
+
+  <!-- === marquee intro === -->
   <marquee behavior="scroll" direction="left" scrollamount="10">
     Mitch &quot;Michelle&quot; Bentz
   </marquee>
+
+  <!-- === flashing WIP === -->
   <div id="wip">WIP!</div>
+
+  <!-- === info section === -->
+  <section class="card">
+    <h2>Site Under Construction</h2>
+    <p>Thanks for stopping by! I’m still piecing things together..</p>
+    <p>In the meantime, you can follow my finished projects at <a href="https://huxpmusic.com" target="_blank" rel="noopener">HuxP</a> and dive into Shiki Taigen resources at <a href="https://shikitaigen.com" target="_blank" rel="noopener">shikitaigen.com</a>.</p>
+    <p>Stay tuned—more sections (portfolio, contact, and extras) will roll out soon!</p>
+  </section>
 </body>
 </html>
-
