@@ -10,9 +10,11 @@
 <link rel="icon" href="favicon.png" type="image/png" sizes="32x32">
 
 <style>
+/* ---------- palette & reset ---------- */
 :root{
   --glass:rgba(255,255,255,.32);
   --glass-dark:rgba(0,0,0,.35);
+  --taskbar:rgba(0,0,0,.28);
   --win7-glow:#89c9ff;
 }
 *{box-sizing:border-box;margin:0;padding:0}
@@ -23,10 +25,10 @@ body{
   color:#fff;overflow:hidden;position:relative;
 }
 
-/* === Desktop shortcuts === */
+/* ---------- desktop shortcuts ---------- */
 .desktop-icon{
   position:absolute;width:72px;display:flex;flex-direction:column;align-items:center;
-  font-size:.8rem;color:#fff;text-align:center;text-decoration:none;
+  font-size:.8rem;text-align:center;color:#fff;text-decoration:none;
   text-shadow:0 0 6px rgba(0,0,0,.8)}
 .desktop-icon img{height:48px;width:48px;margin-bottom:.3rem}
 .desktop-icon:hover::before{
@@ -35,7 +37,7 @@ body{
   border:1px solid rgba(255,255,255,.45);border-radius:6px;font-size:.7rem;
   box-shadow:0 2px 6px rgba(0,0,0,.6)}
 
-/* === Widgets === */
+/* ---------- draggable widgets ---------- */
 .widget{
   position:absolute;padding:.8rem;cursor:move;max-width:350px;
   backdrop-filter:blur(20px) saturate(150%);background:var(--glass);
@@ -44,23 +46,53 @@ body{
 .widget img{max-width:100%;display:block;pointer-events:none}
 .blinkies-widget img{height:31px;border-radius:4px;box-shadow:0 2px 4px rgba(0,0,0,.5)}
 
-/* === Start orb & menu === */
-#start-btn{position:fixed;bottom:12px;left:12px;border:none;background:none;cursor:pointer;z-index:30}
+/* ---------- taskbar ---------- */
+#taskbar{
+  position:fixed;left:0;right:0;bottom:0;height:40px;z-index:20;
+  backdrop-filter:blur(14px) saturate(160%);
+  background:linear-gradient(to top,var(--taskbar) 0%,rgba(0,0,0,.18) 100%);
+  border-top:1px solid rgba(255,255,255,.35);
+}
+
+/* ---------- start orb ---------- */
+#start-btn{
+  position:absolute;bottom:4px;left:6px;border:none;background:none;cursor:pointer;z-index:30}
 #start-btn img{height:48px;width:48px;border-radius:50%;box-shadow:0 2px 6px rgba(0,0,0,.6)}
+
+/* ---------- start menu ---------- */
 #start-menu{
-  position:fixed;bottom:70px;left:12px;width:320px;display:none;z-index:25;
+  position:fixed;bottom:50px;left:4px;width:320px;display:none;z-index:25;
   backdrop-filter:blur(18px) saturate(150%);background:var(--glass);
   border:1px solid rgba(255,255,255,.6);border-radius:12px;
   box-shadow:0 6px 14px rgba(0,0,0,.6);font-size:.9rem}
   .start-inner{display:flex}
   .start-left{flex:1;padding:1rem 1.2rem;border-right:1px solid rgba(255,255,255,.4)}
   .start-right{width:120px;padding:1rem}
-  .start-left a,.start-right a{display:block;color:#fff;padding:.3rem 0;font-weight:600;
-    text-decoration:none;text-shadow:0 0 5px rgba(0,0,0,.7)}
+  .start-left a,.start-right a{
+    display:block;color:#fff;padding:.3rem 0;font-weight:600;text-decoration:none;
+    text-shadow:0 0 5px rgba(0,0,0,.7)}
   .start-left a:hover,.start-right a:hover{color:var(--win7-glow)}
   .start-right .username{font-weight:700;color:var(--win7-glow);margin-bottom:.6rem}
+  /* bottom row */
+  .start-bottom{
+    display:flex;align-items:center;gap:.6rem;padding:.6rem 1rem 1rem 1rem;
+    border-top:1px solid rgba(255,255,255,.4)}
+    .start-bottom input{
+      flex:1;height:22px;border:1px solid #6d6d6d;border-radius:2px;padding:0 4px;
+      background:#fff;color:#000;font-size:.78rem}
+    .shutdown{
+      background:#e6e6e6;border:1px solid #7f7f7f;border-radius:2px;
+      padding:.2rem .6rem;font-size:.78rem;font-weight:600;color:#000;
+      display:flex;align-items:center;gap:.3rem;cursor:pointer}
+      .shutdown:hover{background:#f5f5f5}
+      .shutdown::after{content:"▼";font-size:.55rem;margin-top:-2px}
 
-/* === Error dialog === */
+/* ---------- taskbar clock ---------- */
+#taskbar-clock{
+  position:absolute;right:12px;bottom:4px;line-height:1.1;text-align:center;
+  font-size:11px;font-weight:600;text-shadow:0 0 5px rgba(0,0,0,.7);pointer-events:none}
+
+/* ---------- error dialog ---------- */
 #errDlg{
   position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);
   width:340px;padding:1rem 1.2rem;z-index:50;
@@ -74,15 +106,15 @@ body{
   box-shadow:inset 0 1px 0 #fff}
 #errDlg button:hover{background:#f5f5f5}
 
-/* === Toast === */
-#toast{position:fixed;bottom:20px;right:20px;display:none;padding:1rem 1.5rem;
+/* ---------- toast ---------- */
+#toast{position:fixed;bottom:60px;right:20px;display:none;padding:1rem 1.5rem;
   backdrop-filter:blur(12px) saturate(150%);background:var(--glass);
   border:1px solid rgba(255,255,255,.6);border-radius:12px;box-shadow:0 4px 12px rgba(0,0,0,.5)}
 </style>
 </head>
 <body>
 
-<!-- Desktop shortcuts -->
+<!-- Shortcuts -->
 <a href="https://huxpmusic.com" class="desktop-icon" data-tip="Visit huxpmusic.com." target="_blank" rel="noopener" style="top:120px;left:20px;">
   <img src="shortcut.png" alt="huxpmusic.com"><span>huxpmusic.com</span>
 </a>
@@ -111,19 +143,23 @@ body{
   <img src="https://adriansblinkiecollection.neocities.org/buttons/e23.gif"  alt="Nyan Cat">
 </div>
 
-<!-- Start orb & menu -->
-<button id="start-btn"><img src="start.png" alt="Start"></button>
+<!-- Taskbar -->
+<div id="taskbar">
+  <!-- Start orb -->
+  <button id="start-btn"><img src="start.png" alt="Start"></button>
+  <!-- Clock -->
+  <div id="taskbar-clock"></div>
+</div>
 
+<!-- Start menu -->
 <div id="start-menu">
   <div class="start-inner">
-    <!-- Left column -->
     <div class="start-left">
       <a href="https://www.last.fm/user/HuxP"       target="_blank" rel="noopener">Last.fm</a>
-      <a href="https://www.instagram.com/shikitaigen" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://www.instagram.com/huxpmusic" target="_blank" rel="noopener">Instagram</a>
       <a href="https://pronouns.page/@HuxP"         target="_blank" rel="noopener">Pronouns.page</a>
       <a href="#" id="discord-link">Discord</a>
     </div>
-    <!-- Right column -->
     <div class="start-right">
       <div class="username">Mitch &quot;Michelle&quot; Bentz</div>
       <a href="#">Documents</a>
@@ -135,6 +171,12 @@ body{
       <a href="#">Default Programs</a>
       <a href="#">Help and Support</a>
     </div>
+  </div>
+  <!-- Bottom row -->
+  <div class="start-bottom">
+    <span style="font-size:.8rem;font-weight:600;white-space:nowrap;">All&nbsp;Programs ▶</span>
+    <input type="text" placeholder="Search programs and files">
+    <div class="shutdown">Shut&nbsp;down</div>
   </div>
 </div>
 
@@ -158,7 +200,7 @@ document.getElementById('discord-link').onclick=e=>{
   navigator.clipboard.writeText('huxpmusic').then(()=>toast('Discord username copied!'));
 };
 
-/* Start menu */
+/* Start menu toggle */
 const startBtn=document.getElementById('start-btn');
 const startMenu=document.getElementById('start-menu');
 startBtn.addEventListener('click',e=>{
@@ -168,7 +210,18 @@ startBtn.addEventListener('click',e=>{
 startMenu.addEventListener('click',e=>e.stopPropagation());
 document.addEventListener('click',()=>{startMenu.style.display='none';});
 
-/* drag widgets (size locked) */
+/* live clock */
+function updateClock(){
+  const now=new Date();
+  const time=now.toLocaleTimeString([], {hour:'numeric',minute:'2-digit'});
+  const date=now.toLocaleDateString();
+  document.getElementById('taskbar-clock').innerHTML=`${time}<br>${date}`;
+}
+updateClock();
+setInterval(updateClock,1000);
+
+/* drag widgets – bounded to desktop */
+const TASKBAR_H=40;
 document.querySelectorAll('.widget').forEach(w=>{
   let ox=0,oy=0,drag=false,locked=false;
   w.addEventListener('mousedown',e=>{
@@ -177,7 +230,13 @@ document.querySelectorAll('.widget').forEach(w=>{
     if(!locked){w.style.width=w.offsetWidth+'px';w.style.height=w.offsetHeight+'px';locked=true;}
   });
   document.addEventListener('mousemove',e=>{
-    if(drag){w.style.left=e.clientX-ox+'px';w.style.top=e.clientY-oy+'px';}
+    if(!drag)return;
+    let newL=e.clientX-ox;
+    let newT=e.clientY-oy;
+    /* clamp to viewport */
+    newL=Math.max(0,Math.min(window.innerWidth - w.offsetWidth ,newL));
+    newT=Math.max(0,Math.min(window.innerHeight-TASKBAR_H - w.offsetHeight,newT));
+    w.style.left=newL+'px';w.style.top=newT+'px';
   });
   document.addEventListener('mouseup',()=>{drag=false;w.style.zIndex=30});
 });
