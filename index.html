@@ -3,10 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <title>Mitch "Michelle" Bentz | Personal Site</title>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;700&display=swap" rel="stylesheet">
 <link rel="icon" href="favicon.png" type="image/png" sizes="32x32">
+
 <style>
 :root{
   --glass:rgba(255,255,255,.32);
@@ -22,66 +24,90 @@ body{
   color:#fff;overflow:hidden;position:relative;
 }
 
-/* ---------- shortcuts ---------- */
-.desktop-icon{position:absolute;width:72px;display:flex;flex-direction:column;align-items:center;
-  font-size:.8rem;text-align:center;color:#fff;text-decoration:none;text-shadow:0 0 6px #000}
+/* ---------- desktop shortcuts ---------- */
+.desktop-icon{
+  position:absolute;width:72px;display:flex;flex-direction:column;align-items:center;
+  font-size:.8rem;text-align:center;color:#fff;text-decoration:none;
+  text-shadow:0 0 6px #000}
 .desktop-icon img{height:48px;width:48px;margin-bottom:.3rem}
-.desktop-icon:hover::before{content:attr(data-tip);position:absolute;bottom:-24px;left:50%;
-  transform:translateX(-50%);white-space:nowrap;padding:.2rem .5rem;background:var(--glass-dark);
-  border:1px solid rgba(255,255,255,.45);border-radius:6px;font-size:.7rem;box-shadow:0 2px 6px #000}
+.desktop-icon:hover::before{
+  content:attr(data-tip);position:absolute;bottom:-24px;left:50%;transform:translateX(-50%);
+  white-space:nowrap;padding:.2rem .5rem;background:var(--glass-dark);
+  border:1px solid rgba(255,255,255,.45);border-radius:6px;font-size:.7rem;
+  box-shadow:0 2px 6px #000}
 
-/* ---------- widgets ---------- */
-.widget{position:absolute;padding:.8rem;cursor:move;max-width:350px;
+/* ---------- draggable widgets ---------- */
+.widget{
+  position:absolute;padding:.8rem;cursor:move;max-width:350px;
   backdrop-filter:blur(20px) saturate(150%);background:var(--glass);
   border:1px solid rgba(255,255,255,.55);border-radius:14px;box-shadow:0 4px 12px #000a}
 .widget img{max-width:100%;display:block;pointer-events:none}
 .blinkies-widget img{height:31px;border-radius:4px;box-shadow:0 2px 4px #0008}
 
 /* ---------- taskbar ---------- */
-#taskbar{position:fixed;left:0;right:0;bottom:0;height:54px;z-index:20;
+#taskbar{
+  position:fixed;left:0;right:0;bottom:0;height:54px;z-index:20;
   background:linear-gradient(to top,var(--taskbar) 0%,rgba(0,0,0,.2) 100%);
-  border-top:1px solid rgba(255,255,255,.35);backdrop-filter:blur(14px) saturate(160%)}
+  border-top:1px solid rgba(255,255,255,.35);
+  backdrop-filter:blur(14px) saturate(160%);
+}
 
 /* start orb */
-#start-btn{position:absolute;bottom:3px;left:6px;border:none;background:none;cursor:pointer;z-index:30}
+#start-btn{
+  position:absolute;bottom:3px;left:6px;z-index:30;border:none;background:none;cursor:pointer}
 #start-btn img{height:48px;width:48px;border-radius:50%;box-shadow:0 2px 6px #0006}
 
-/* peek */
-#peek{position:absolute;right:0;bottom:0;width:10px;height:54px;background:var(--glass-dark);
-  border-left:1px solid rgba(255,255,255,.3);transition:background .2s}
+/* peek button */
+#peek{
+  position:absolute;right:0;bottom:0;width:10px;height:54px;
+  background:var(--glass-dark);border-left:1px solid rgba(255,255,255,.3);
+  transition:background .2s}
 #peek:hover{background:rgba(255,255,255,.4)}
 
-/* tray */
-#tray{position:absolute;right:100px;bottom:0;height:54px;display:flex;align-items:center;gap:6px}
+/* tray icons */
+#tray{
+  position:absolute;right:140px;bottom:0;height:54px;
+  display:flex;align-items:center;gap:6px}
 #tray img{height:16px;width:16px;filter:drop-shadow(0 0 3px #000)}
 
 /* clock */
-#taskbar-clock{position:absolute;right:16px;bottom:6px;line-height:1.1;text-align:center;
+#taskbar-clock{
+  position:absolute;right:20px;bottom:11px;line-height:1.1;text-align:right;
   font-size:11px;font-weight:600;text-shadow:0 0 5px #000;pointer-events:none}
 
 /* ---------- start menu ---------- */
-#start-menu{position:fixed;bottom:66px;left:4px;width:330px;height:460px;display:none;z-index:25;
+#start-menu{
+  position:fixed;bottom:66px;left:4px;width:342px;height:500px;display:none;z-index:25;
   background:var(--glass);backdrop-filter:blur(18px) saturate(150%);
   border:1px solid rgba(255,255,255,.6);border-radius:12px;box-shadow:0 6px 14px #0009;font-size:.9rem}
   .start-inner{display:flex;height:calc(100% - 62px)}
   .start-left{flex:1;padding:1rem 1.2rem;border-right:1px solid rgba(255,255,255,.4);overflow:auto}
-  .start-right{width:130px;padding:1rem;overflow:hidden}
+  .start-right{width:136px;padding:1rem 1.2rem;overflow:hidden}
   .start-left a,.start-right a{display:block;color:#fff;padding:.25rem 0;font-weight:600;
     text-decoration:none;text-shadow:0 0 5px #000}
   .start-left a:hover,.start-right a:hover{color:var(--win7-glow)}
-  .userpic{width:48px;height:48px;border-radius:4px;margin-bottom:.5rem;filter:drop-shadow(0 0 3px #000)}
-  .start-right .username{font-weight:700;color:var(--win7-glow);margin:.4rem 0 .6rem}
+  .userpic{
+    width:54px;height:54px;border-radius:4px;margin:0 auto .5rem;
+    border:1px solid rgba(255,255,255,.7);box-shadow:0 0 6px #000a}
+  .start-right .username{font-weight:700;color:var(--win7-glow);margin:.6rem 0 1rem}
 
 /* bottom strip */
-.start-bottom{display:flex;align-items:center;gap:.6rem;padding:.6rem 1rem 1rem;border-top:1px solid rgba(255,255,255,.4)}
+.start-bottom{
+  display:flex;align-items:center;gap:.6rem;padding:.6rem 1rem 1rem;
+  border-top:1px solid rgba(255,255,255,.4)}
 .start-bottom span{font-size:.8rem;font-weight:600;white-space:nowrap}
-.start-bottom input{flex:1;height:22px;border:1px solid #6d6d6d;border-radius:2px;padding:0 4px;background:#fff;color:#000;font-size:.78rem}
-.shutdown{background:#e6e6e6;border:1px solid #7f7f7f;border-radius:2px;padding:.2rem .6rem;font-size:.78rem;font-weight:600;color:#000;display:flex;align-items:center;gap:.3rem;cursor:pointer}
+.start-bottom input{
+  flex:1;height:22px;border:1px solid #6d6d6d;border-radius:2px;padding:0 4px;
+  background:#fff;color:#000;font-size:.78rem}
+.shutdown{
+  background:#e6e6e6;border:1px solid #7f7f7f;border-radius:2px;padding:.2rem .6rem;
+  font-size:.78rem;font-weight:600;color:#000;display:flex;align-items:center;gap:.3rem;cursor:pointer}
 .shutdown:hover{background:#f5f5f5}
 .shutdown::after{content:"▼";font-size:.55rem;margin-top:-2px}
 
 /* ---------- toast ---------- */
-#toast{position:fixed;bottom:70px;right:20px;display:none;padding:1rem 1.5rem;
+#toast{
+  position:fixed;bottom:70px;right:20px;display:none;padding:1rem 1.5rem;
   background:var(--glass);backdrop-filter:blur(12px) saturate(150%);
   border:1px solid rgba(255,255,255,.6);border-radius:12px;box-shadow:0 4px 12px #0008}
 </style>
@@ -118,7 +144,9 @@ body{
 <!-- Taskbar -->
 <div id="taskbar">
   <button id="start-btn"><img src="start.png" alt="Start"></button>
-  <div id="tray"><img src="tray1.png"><img src="tray2.png"><img src="tray3.png"></div>
+  <div id="tray">
+    <img src="tray1.png" alt=""><img src="tray2.png" alt=""><img src="tray3.png" alt="">
+  </div>
   <div id="taskbar-clock"></div>
   <div id="peek" title="Show desktop"></div>
 </div>
@@ -151,26 +179,31 @@ body{
 
 <script>
 /* toast */
-function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.style.display='block';
-  setTimeout(()=>t.style.display='none',3000);}
+function toast(msg){
+  const t=document.getElementById('toast');
+  t.textContent=msg;t.style.display='block';
+  setTimeout(()=>t.style.display='none',3000);
+}
 
 /* Discord copy */
 document.getElementById('discord-link').onclick=e=>{
-  e.preventDefault();navigator.clipboard.writeText('huxpmusic').then(()=>toast('Discord username copied!'));
+  e.preventDefault();
+  navigator.clipboard.writeText('huxpmusic').then(()=>toast('Discord username copied!'));
 };
 
 /* Start menu */
 const startBtn=document.getElementById('start-btn'),startMenu=document.getElementById('start-menu');
-startBtn.addEventListener('click',e=>{e.stopPropagation();
-  startMenu.style.display=(startMenu.style.display==='block')?'none':'block';});
+startBtn.addEventListener('click',e=>{
+  e.stopPropagation();
+  startMenu.style.display=(startMenu.style.display==='block')?'none':'block';
+});
 startMenu.addEventListener('click',e=>e.stopPropagation());
 document.addEventListener('click',()=>{startMenu.style.display='none';});
 
 /* Clock */
 function updateClock(){
-  const n=new Date();
-  document.getElementById('taskbar-clock').innerHTML=
-    `${n.toLocaleTimeString([], {hour:'numeric',minute:'2-digit'})}<br>${n.toLocaleDateString()}`;
+  const n=new Date(),t=n.toLocaleTimeString([], {hour:'numeric',minute:'2-digit'});
+  document.getElementById('taskbar-clock').innerHTML=`${t}<br>${n.toLocaleDateString()}`;
 }
 updateClock();setInterval(updateClock,1000);
 
@@ -184,8 +217,8 @@ document.querySelectorAll('.widget').forEach(w=>{
   });
   document.addEventListener('mousemove',e=>{
     if(!drag)return;
-    let L=Math.min(Math.max(0,e.clientX-ox),innerWidth-w.offsetWidth);
-    let T=Math.min(Math.max(0,e.clientY-oy),innerHeight-BAR_H-w.offsetHeight);
+    let L=Math.min(Math.max(0,e.clientX-ox),innerWidth-w.offsetWidth),
+        T=Math.min(Math.max(0,e.clientY-oy),innerHeight-BAR_H-w.offsetHeight);
     w.style.left=L+'px';w.style.top=T+'px';
   });
   document.addEventListener('mouseup',()=>{drag=false;w.style.zIndex=30});
