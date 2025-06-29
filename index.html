@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Mitch "Michelle" Bentz | Personal Site</title>
+  <title>Mitch &quot;Michelle&quot; Bentz | Personal Site</title>
   <!-- Windows‑7 style font -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,9 +12,9 @@
   <style>
     /* ===== Win‑7 Aero variables ===== */
     :root{
-      --glass:rgba(255,255,255,.3);          /* generic glass */
-      --win7-accent:#1b80d6;                 /* taskbar blue */
-      --win7-glow:#89c9ff;                   /* hover glow */
+      --glass:rgba(255,255,255,.3);
+      --win7-accent:#1b80d6;
+      --win7-glow:#89c9ff;
     }
 
     /* ===== Reset / Layout ===== */
@@ -27,36 +27,26 @@
       color:#fff;
     }
 
-    /* ===== Aero header ===== */
+    /* ===== Top header with name ===== */
     header{
       position:fixed;top:0;left:0;right:0;z-index:10;
       backdrop-filter:blur(12px) saturate(140%);
       background:linear-gradient(to bottom,rgba(255,255,255,.55),rgba(255,255,255,.15));
       border-bottom:1px solid rgba(255,255,255,.4);
-      padding:.5rem 0;display:flex;justify-content:center;gap:2rem;
       box-shadow:0 1px 6px rgba(0,0,0,.4);
+      text-align:center;padding:.6rem 0;
     }
-    header a{
-      color:#fff;text-decoration:none;font-weight:700;letter-spacing:.02em;
-      text-shadow:0 0 6px rgba(0,0,0,.8);transition:color .2s;
+    header h1{
+      font-size:1.6rem;font-weight:700;letter-spacing:.04em;
+      color:var(--win7-glow);text-shadow:0 0 8px rgba(0,0,0,.9);
     }
-    header a:hover{color:var(--win7-glow);}
 
     /* spacer so content isn’t hidden */
-    .spacer{height:3.2rem}
-
-    /* ===== Marquee banner ===== */
-    marquee{
-      width:100%;font-size:4rem;font-weight:700;letter-spacing:.04em;
-      backdrop-filter:blur(6px) saturate(160%);
-      background:linear-gradient(to bottom,rgba(0,0,0,.5),rgba(0,0,0,.2));
-      color:var(--win7-glow);text-shadow:0 0 8px rgba(0,0,0,.9);
-      border-top:1px solid rgba(255,255,255,.35);border-bottom:1px solid rgba(255,255,255,.35);
-    }
+    .spacer{height:3.6rem}
 
     /* ===== Flashing WIP ===== */
     #wip{
-      margin:2rem 0 1rem;font-size:2rem;font-weight:700;color:var(--win7-accent);
+      margin:1.5rem 0 .5rem;font-size:2rem;font-weight:700;color:var(--win7-accent);
       animation:flash 1s steps(2,start) infinite;text-shadow:0 0 8px rgba(0,0,0,.8);
     }
     @keyframes flash{0%,49%{opacity:0;}50%,100%{opacity:1;}}
@@ -79,27 +69,54 @@
 
     /* ===== Blinkies row ===== */
     .blinkies{display:flex;justify-content:center;flex-wrap:wrap;gap:.5rem;margin-top:1rem;}
-    .blinkies img{height:31px;border-radius:4px;box-shadow:0 2px 4px rgba(0,0,0,.5);}
+    .blinkies img{height:31px;border-radius:4px;box-shadow:0 2px 4px rgba(0,0,0,.5);}    
+
+    /* ===== Start button & menu ===== */
+    #start-btn{
+      position:fixed;bottom:12px;left:12px;z-index:20;border:none;cursor:pointer;
+      background:transparent;padding:0;
+    }
+    #start-btn img{height:48px;width:48px;border-radius:50%;box-shadow:0 2px 6px rgba(0,0,0,.6);}    
+
+    #start-menu{
+      position:fixed;bottom:70px;left:12px;z-index:19;display:none;
+      width:220px;padding:1rem;
+      backdrop-filter:blur(18px) saturate(150%);
+      background:var(--glass);
+      border:1px solid rgba(255,255,255,.6);
+      border-radius:12px;box-shadow:0 6px 14px rgba(0,0,0,.6);
+    }
+    #start-menu a{
+      display:block;color:#fff;font-weight:600;text-decoration:none;padding:.35rem 0;
+      text-shadow:0 0 5px rgba(0,0,0,.7);
+    }
+    #start-menu a:hover{color:var(--win7-glow);}
+
+    /* Toast notification */
+    #toast{
+      position:fixed;bottom:20px;right:20px;padding:1rem 1.5rem;
+      backdrop-filter:blur(12px) saturate(150%);
+      background:var(--glass);
+      border:1px solid rgba(255,255,255,.6);
+      border-radius:12px;box-shadow:0 4px 12px rgba(0,0,0,.5);
+      display:none;
+    }
 
     /* ===== Responsive tweaks ===== */
     @media(max-width:600px){
-      marquee{font-size:2.4rem;}
-      #wip{font-size:1.5rem;}
+      header h1{font-size:1.2rem;}
+      #wip{font-size:1.4rem;}
       .glass{padding:1rem 1.25rem;}
     }
   </style>
 </head>
 <body>
-  <!-- **** Aero Glass Header **** -->
+  <!-- **** Header with site name **** -->
   <header>
-    <a href="https://huxpmusic.com" target="_blank" rel="noopener">HuxP Music</a>
-    <a href="https://shikitaigen.com" target="_blank" rel="noopener">Shiki Taigen Blog</a>
+    <h1>Mitch "Michelle" Bentz</h1>
   </header>
 
   <div class="spacer"></div>
-
-  <!-- **** Moving Banner **** -->
-  <marquee behavior="scroll" direction="left" scrollamount="8">Mitch "Michelle" Bentz</marquee>
 
   <!-- **** Flashing WIP **** -->
   <div id="wip">WIP!</div>
@@ -107,8 +124,7 @@
   <!-- **** Information Panel **** -->
   <section class="glass">
     <h2>Site Under Construction</h2>
-    <p>Thanks for stopping by! I’m still piecing things together./p>
-    <p>Meanwhile, check out finished releases at <a href="https://huxpmusic.com" target="_blank" rel="noopener">HuxP Music</a> and all things Shiki Taigen at <a href="https://shikitaigen.com" target="_blank" rel="noopener">shikitaigen.com</a>.</p>
+    <p>Thanks for visiting! I’m currently rebuilding this site with a fresh coat of Aero glass. Expect project notes, blog posts, and behind‑the‑scenes peeks at my Vocaloid covers soon.</p>
     <p>Stay tuned for more!</p>
   </section>
 
@@ -119,12 +135,52 @@
       <img src="https://lastfm-recently-played.vercel.app/api?user=HuxP&nowplaying=true" width="350" alt="Now playing on Last.fm">
     </a>
 
-    <div class="stamps">
-      <img src="https://adriansblinkiecollection.neocities.org/buttons/a106.jpg" alt="Nintendo 3DS">
-      <img src="https://adriansblinkiecollection.neocities.org/buttons/a112.gif" alt="Anti‑AI">
-      <img src="https://adriansblinkiecollection.neocities.org/buttons/a58.gif" alt="This site is GAY">
-      <img src="https://adriansblinkiecollection.neocities.org/buttons/e23.gif" alt="Nyan Cat">
+    <div class="blinkies">
+      <img src="https://adriansblinkiecollection.neocities.org/buttons/a106.jpg" alt="Nintendo 3DS blinkie">
+      <img src="https://adriansblinkiecollection.neocities.org/buttons/a112.gif" alt="Anti‑AI blinkie">
+      <img src="https://adriansblinkiecollection.neocities.org/buttons/a58.gif" alt="This site is GAY blinkie">
+      <img src="https://adriansblinkiecollection.neocities.org/buttons/e23.gif" alt="Nyan Cat blinkie">
     </div>
   </section>
+
+  <!-- **** Start Button **** -->
+  <button id="start-btn" aria-label="Open start menu">
+    <img src="start.png" alt="Start Menu Button">
+  </button>
+
+  <!-- **** Start Menu **** -->
+  <div id="start-menu">
+    <a href="https://www.last.fm/user/HuxP" target="_blank" rel="noopener">Last.fm</a>
+    <a href="https://www.instagram.com/huxpmusic" target="_blank" rel="noopener">Instagram</a>
+    <a href="https://pronouns.page/@HuxP" target="_blank" rel="noopener">Pronouns.page</a>
+    <a href="#" id="discord-link">Copy Discord (huxpmusic)</a>
+  </div>
+
+  <!-- **** Toast **** -->
+  <div id="toast">Discord username copied!</div>
+
+  <script>
+    const startBtn = document.getElementById('start-btn');
+    const startMenu = document.getElementById('start-menu');
+    const discordLink = document.getElementById('discord-link');
+    const toast = document.getElementById('toast');
+
+    // toggle menu
+    startBtn.addEventListener('click', e=>{
+      e.stopPropagation();
+      startMenu.style.display = startMenu.style.display==='block' ? 'none' : 'block';
+    });
+    // click outside to close
+    document.addEventListener('click', ()=> startMenu.style.display='none');
+
+    // copy discord
+    discordLink.addEventListener('click', e=>{
+      e.preventDefault();
+      navigator.clipboard.writeText('huxpmusic').then(()=>{
+        toast.style.display='block';
+        setTimeout(()=> toast.style.display='none', 2500);
+      });
+    });
+  </script>
 </body>
 </html>
