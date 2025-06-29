@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <title>Mitch "Michelle" Bentz | Personal Site</title>
 
+<!-- Windows-style font -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;700&display=swap" rel="stylesheet">
@@ -27,14 +28,12 @@ body{
 /* ---------- desktop shortcuts ---------- */
 .desktop-icon{
   position:absolute;width:72px;display:flex;flex-direction:column;align-items:center;
-  font-size:.8rem;text-align:center;color:#fff;text-decoration:none;
-  text-shadow:0 0 6px #000}
+  font-size:.8rem;text-align:center;color:#fff;text-decoration:none;text-shadow:0 0 6px #000}
 .desktop-icon img{height:48px;width:48px;margin-bottom:.3rem}
 .desktop-icon:hover::before{
   content:attr(data-tip);position:absolute;bottom:-24px;left:50%;transform:translateX(-50%);
   white-space:nowrap;padding:.2rem .5rem;background:var(--glass-dark);
-  border:1px solid rgba(255,255,255,.45);border-radius:6px;font-size:.7rem;
-  box-shadow:0 2px 6px #000}
+  border:1px solid rgba(255,255,255,.45);border-radius:6px;font-size:.7rem;box-shadow:0 2px 6px #000}
 
 /* ---------- draggable widgets ---------- */
 .widget{
@@ -52,55 +51,56 @@ body{
   backdrop-filter:blur(14px) saturate(160%);
 }
 
-/* start orb */
+/* Start orb */
 #start-btn{
-  position:absolute;bottom:3px;left:6px;z-index:30;border:none;background:none;cursor:pointer}
+  position:absolute;bottom:3px;left:6px;z-index:30;
+  border:none;background:none;cursor:pointer}
 #start-btn img{height:48px;width:48px;border-radius:50%;box-shadow:0 2px 6px #0006}
 
-/* peek button */
+/* Peek button */
 #peek{
   position:absolute;right:0;bottom:0;width:10px;height:54px;
   background:var(--glass-dark);border-left:1px solid rgba(255,255,255,.3);
   transition:background .2s}
 #peek:hover{background:rgba(255,255,255,.4)}
 
-/* tray icons */
+/* Tray */
 #tray{
-  position:absolute;right:140px;bottom:0;height:54px;
+  position:absolute;right:148px;bottom:0;height:54px;
   display:flex;align-items:center;gap:6px}
 #tray img{height:16px;width:16px;filter:drop-shadow(0 0 3px #000)}
 
-/* clock */
+/* Clock */
 #taskbar-clock{
-  position:absolute;right:20px;bottom:11px;line-height:1.1;text-align:right;
+  position:absolute;right:20px;bottom:14px;line-height:1.1;text-align:right;
   font-size:11px;font-weight:600;text-shadow:0 0 5px #000;pointer-events:none}
 
-/* ---------- start menu ---------- */
+/* ---------- Start menu ---------- */
 #start-menu{
-  position:fixed;bottom:66px;left:4px;width:342px;height:500px;display:none;z-index:25;
+  position:fixed;bottom:66px;left:4px;width:360px;height:500px;display:none;z-index:25;
   background:var(--glass);backdrop-filter:blur(18px) saturate(150%);
   border:1px solid rgba(255,255,255,.6);border-radius:12px;box-shadow:0 6px 14px #0009;font-size:.9rem}
-  .start-inner{display:flex;height:calc(100% - 62px)}
+  .start-inner{display:flex;height:calc(100% - 64px)}
   .start-left{flex:1;padding:1rem 1.2rem;border-right:1px solid rgba(255,255,255,.4);overflow:auto}
-  .start-right{width:136px;padding:1rem 1.2rem;overflow:hidden}
+  .start-right{width:154px;padding:1rem 1.4rem;overflow:hidden}
   .start-left a,.start-right a{display:block;color:#fff;padding:.25rem 0;font-weight:600;
     text-decoration:none;text-shadow:0 0 5px #000}
   .start-left a:hover,.start-right a:hover{color:var(--win7-glow)}
   .userpic{
-    width:54px;height:54px;border-radius:4px;margin:0 auto .5rem;
-    border:1px solid rgba(255,255,255,.7);box-shadow:0 0 6px #000a}
+    width:60px;height:60px;border-radius:4px;margin:0 auto .8rem;
+    border:1px solid rgba(255,255,255,.8);box-shadow:0 0 6px #000a}
   .start-right .username{font-weight:700;color:var(--win7-glow);margin:.6rem 0 1rem}
 
 /* bottom strip */
 .start-bottom{
-  display:flex;align-items:center;gap:.6rem;padding:.6rem 1rem 1rem;
+  display:flex;align-items:center;gap:.6rem;padding:.6rem 1rem 1rem 1rem;
   border-top:1px solid rgba(255,255,255,.4)}
 .start-bottom span{font-size:.8rem;font-weight:600;white-space:nowrap}
 .start-bottom input{
   flex:1;height:22px;border:1px solid #6d6d6d;border-radius:2px;padding:0 4px;
   background:#fff;color:#000;font-size:.78rem}
 .shutdown{
-  background:#e6e6e6;border:1px solid #7f7f7f;border-radius:2px;padding:.2rem .6rem;
+  background:#e6e6e6;border:1px solid #7f7f7f;border-radius:2px;padding:.2rem .8rem;
   font-size:.78rem;font-weight:600;color:#000;display:flex;align-items:center;gap:.3rem;cursor:pointer}
 .shutdown:hover{background:#f5f5f5}
 .shutdown::after{content:"▼";font-size:.55rem;margin-top:-2px}
@@ -116,7 +116,7 @@ body{
 
 <!-- Recycle Bin -->
 <a href="#" class="desktop-icon" data-tip="Recycle Bin" style="top:20px;left:20px;">
-  <img src="recycle bin.png" alt="Recycle Bin"><span>Recycle&nbsp;Bin</span>
+  <img src="recycle bin.png" alt="Recycle Bin"><span>Recycle Bin</span>
 </a>
 
 <!-- Website shortcuts -->
@@ -144,9 +144,7 @@ body{
 <!-- Taskbar -->
 <div id="taskbar">
   <button id="start-btn"><img src="start.png" alt="Start"></button>
-  <div id="tray">
-    <img src="tray1.png" alt=""><img src="tray2.png" alt=""><img src="tray3.png" alt="">
-  </div>
+  <div id="tray"><img src="tray1.png"><img src="tray2.png"><img src="tray3.png"></div>
   <div id="taskbar-clock"></div>
   <div id="peek" title="Show desktop"></div>
 </div>
@@ -156,7 +154,7 @@ body{
   <div class="start-inner">
     <div class="start-left">
       <a href="https://www.last.fm/user/HuxP"       target="_blank" rel="noopener">Last.fm</a>
-      <a href="https://www.instagram.com/huxpmusic" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://www.instagram.com/shikitaigen" target="_blank" rel="noopener">Instagram</a>
       <a href="https://pronouns.page/@HuxP"         target="_blank" rel="noopener">Pronouns.page</a>
       <a href="#" id="discord-link">Discord</a>
     </div>
@@ -178,21 +176,22 @@ body{
 <div id="toast">Discord username copied!</div>
 
 <script>
-/* toast */
+/* toast helper */
 function toast(msg){
   const t=document.getElementById('toast');
   t.textContent=msg;t.style.display='block';
   setTimeout(()=>t.style.display='none',3000);
 }
 
-/* Discord copy */
+/* Discord copy + toast */
 document.getElementById('discord-link').onclick=e=>{
   e.preventDefault();
   navigator.clipboard.writeText('huxpmusic').then(()=>toast('Discord username copied!'));
 };
 
-/* Start menu */
-const startBtn=document.getElementById('start-btn'),startMenu=document.getElementById('start-menu');
+/* Start menu toggling */
+const startBtn=document.getElementById('start-btn'),
+      startMenu=document.getElementById('start-menu');
 startBtn.addEventListener('click',e=>{
   e.stopPropagation();
   startMenu.style.display=(startMenu.style.display==='block')?'none':'block';
@@ -200,10 +199,11 @@ startBtn.addEventListener('click',e=>{
 startMenu.addEventListener('click',e=>e.stopPropagation());
 document.addEventListener('click',()=>{startMenu.style.display='none';});
 
-/* Clock */
+/* Live clock */
 function updateClock(){
-  const n=new Date(),t=n.toLocaleTimeString([], {hour:'numeric',minute:'2-digit'});
-  document.getElementById('taskbar-clock').innerHTML=`${t}<br>${n.toLocaleDateString()}`;
+  const n=new Date();
+  document.getElementById('taskbar-clock').innerHTML=
+    `${n.toLocaleTimeString([], {hour:'numeric',minute:'2-digit'})}<br>${n.toLocaleDateString()}`;
 }
 updateClock();setInterval(updateClock,1000);
 
