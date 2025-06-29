@@ -2,105 +2,240 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Mitch &quot;Michelle&quot; Bentz | Personal Site</title>
+  <title>Mitch "Michelle" Bentz | Personal Site</title>
+
+  <!-- Segoe UI (Windows 7 default) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;700&display=swap" rel="stylesheet">
+
+  <!-- Favicon -->
   <link rel="icon" href="favicon.png" type="image/png" sizes="32x32">
+
   <style>
-    :root{
-      --glass:rgba(255,255,255,.3);
-      --win7-accent:#1b80d6;
-      --win7-glow:#89c9ff;
-    }
-    *{box-sizing:border-box;margin:0;padding:0}
-    html,body{height:100%;}
-    body{
-      position:relative;font-family:'Segoe UI',sans-serif;
-      background:url('Img0_(Windows_7).jpg') center/cover fixed no-repeat;
-      color:#fff;overflow:hidden;
-    }
-    /* Header */
-    header{position:fixed;top:0;left:0;right:0;z-index:10;backdrop-filter:blur(12px) saturate(140%);background:linear-gradient(to bottom,rgba(255,255,255,.55),rgba(255,255,255,.15));border-bottom:1px solid rgba(255,255,255,.4);box-shadow:0 1px 6px rgba(0,0,0,.4);text-align:center;padding:.6rem 0;}
-    header h1{font-size:1.6rem;font-weight:700;letter-spacing:.04em;color:var(--win7-glow);text-shadow:0 0 8px rgba(0,0,0,.9);}
+  /* =====  Win-7 Aero palette & globals  ===== */
+  :root{
+    --glass:rgba(255,255,255,.32);
+    --glass-dark:rgba(0,0,0,.35);
+    --win7-accent:#1b80d6;
+    --win7-glow:#89c9ff;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%;}
+  body{
+    position:relative;                 /* anchors absolute children */
+    font-family:'Segoe UI',sans-serif;
+    background:url('Img0_(Windows_7).jpg') center/cover fixed no-repeat;
+    color:#fff;
+    overflow:hidden;                   /* avoid accidental scrollbars */
+  }
 
-    .spacer{height:3.6rem}
-    #wip{margin:1.5rem 0 .5rem;font-size:2rem;font-weight:700;color:var(--win7-accent);animation:flash 1s steps(2,start) infinite;text-shadow:0 0 8px rgba(0,0,0,.8);} @keyframes flash{0%,49%{opacity:0;}50%,100%{opacity:1;}}
+  /* =====  Aero header  ===== */
+  header{
+    position:fixed;top:0;left:0;right:0;z-index:10;
+    padding:.6rem 0;
+    backdrop-filter:blur(12px) saturate(140%);
+    background:linear-gradient(to bottom,rgba(255,255,255,.55),rgba(255,255,255,.15));
+    border-bottom:1px solid rgba(255,255,255,.4);
+    box-shadow:0 1px 6px rgba(0,0,0,.4);
+    text-align:center;
+  }
+  header h1{
+    font-size:1.6rem;font-weight:700;letter-spacing:.04em;
+    color:var(--win7-glow);text-shadow:0 0 8px rgba(0,0,0,.9);
+  }
 
-    .glass{width:min(90%,600px);margin:0 auto 2rem;padding:1.5rem 2rem;background:var(--glass);backdrop-filter:blur(20px) saturate(150%);border:1px solid rgba(255,255,255,.55);border-radius:18px;box-shadow:0 8px 16px rgba(0,0,0,.4);text-align:center;}
-    .glass h2{margin-bottom:.75rem;text-shadow:0 0 6px rgba(0,0,0,.8);} .glass p{margin:.65rem 0;line-height:1.5;text-shadow:0 0 4px rgba(0,0,0,.7);} .glass a{color:var(--win7-glow);font-weight:700;text-decoration:none;} .glass a:hover{text-decoration:underline;color:#fff;}
+  /* =====  Desktop shortcuts  ===== */
+  .desktop-icon{
+    position:absolute;display:flex;flex-direction:column;align-items:center;width:72px;
+    color:#fff;font-size:.8rem;text-align:center;text-decoration:none;
+    text-shadow:0 0 6px rgba(0,0,0,.8);
+  }
+  .desktop-icon img{height:48px;width:48px;margin-bottom:.3rem;}
+  /* shortcut arrow overlay */
+  .desktop-icon::after{
+    content:"";position:absolute;bottom:18px;right:6px;height:16px;width:16px;
+    background:url('shortcut.png') center/contain no-repeat;
+  }
+  /* tooltip */
+  .desktop-icon:hover::before{
+    content:attr(data-tip);
+    position:absolute;bottom:-24px;left:50%;transform:translateX(-50%);
+    white-space:nowrap;padding:.2rem .5rem;background:var(--glass-dark);
+    border:1px solid rgba(255,255,255,.45);border-radius:6px;font-size:.7rem;
+    box-shadow:0 2px 6px rgba(0,0,0,.6);
+  }
 
-    /* Desktop Icons */
-    .desktop-icon{position:absolute;display:flex;flex-direction:column;align-items:center;width:72px;text-align:center;text-shadow:0 0 6px rgba(0,0,0,.8);color:#fff;font-size:.8rem;text-decoration:none;}
-    .desktop-icon img{height:48px;width:48px;margin-bottom:.3rem;}
+  /* =====  Draggable widgets  ===== */
+  .widget{
+    position:absolute;cursor:move;max-width:350px;padding:.8rem;
+    backdrop-filter:blur(20px) saturate(150%);
+    background:var(--glass);
+    border:1px solid rgba(255,255,255,.55);
+    border-radius:14px;
+    box-shadow:0 4px 12px rgba(0,0,0,.45);
+  }
+  .widget img{max-width:100%;display:block;pointer-events:none;}
+  .blinkies-widget img{height:31px;border-radius:4px;box-shadow:0 2px 4px rgba(0,0,0,.5);}
 
-    /* Start */
-    #start-btn{position:fixed;bottom:12px;left:12px;z-index:30;border:none;cursor:pointer;background:transparent;padding:0;}
-    #start-btn img{height:48px;width:48px;border-radius:50%;box-shadow:0 2px 6px rgba(0,0,0,.6);}    
-    #start-menu{position:fixed;bottom:70px;left:12px;z-index:25;display:none;width:320px;backdrop-filter:blur(18px) saturate(150%);background:var(--glass);border:1px solid rgba(255,255,255,.6);border-radius:12px;box-shadow:0 6px 14px rgba(0,0,0,.6);color:#fff;font-size:.9rem;}
+  /* =====  Start button & menu  ===== */
+  #start-btn{
+    position:fixed;bottom:12px;left:12px;z-index:30;border:none;background:none;cursor:pointer;
+  }
+  #start-btn img{
+    height:48px;width:48px;border-radius:50%;box-shadow:0 2px 6px rgba(0,0,0,.6);
+  }
+  #start-menu{
+    position:fixed;bottom:70px;left:12px;z-index:25;display:none;width:320px;
+    backdrop-filter:blur(18px) saturate(150%);background:var(--glass);
+    border:1px solid rgba(255,255,255,.6);border-radius:12px;
+    box-shadow:0 6px 14px rgba(0,0,0,.6);color:#fff;font-size:.9rem;
+  }
     .start-inner{display:flex;}
-    .start-left{flex:1;padding:1rem 1rem 1rem 1.2rem;border-right:1px solid rgba(255,255,255,.4);} 
+    .start-left{flex:1;padding:1rem 1rem 1rem 1.2rem;border-right:1px solid rgba(255,255,255,.4);}
     .start-right{width:120px;padding:1rem;}
-    .start-left a{display:block;color:#fff;font-weight:600;text-decoration:none;padding:.3rem 0;text-shadow:0 0 5px rgba(0,0,0,.7);} .start-left a:hover{color:var(--win7-glow);} 
-    .start-right .username{font-weight:700;margin-bottom:.6rem;color:var(--win7-glow);text-shadow:0 0 7px rgba(0,0,0,.9);} 
-    .start-right a{display:block;color:#fff;text-decoration:none;padding:.25rem 0;font-size:.85rem;text-shadow:0 0 5px rgba(0,0,0,.7);} .start-right a:hover{color:var(--win7-glow);} 
+    .start-left a,.start-right a{
+      display:block;color:#fff;text-decoration:none;padding:.3rem 0;font-weight:600;
+      text-shadow:0 0 5px rgba(0,0,0,.7);
+    }
+    .start-left a:hover,.start-right a:hover{color:var(--win7-glow);}
+    .start-right .username{font-weight:700;margin-bottom:.6rem;color:var(--win7-glow);}
 
-    /* Widgets */
-    .widget{position:absolute;cursor:move;backdrop-filter:blur(20px) saturate(150%);background:var(--glass);border:1px solid rgba(255,255,255,.55);border-radius:14px;box-shadow:0 4px 12px rgba(0,0,0,.45);padding:.8rem;}
-    .blinkies-widget img{display:block;margin:.3rem auto;height:31px;border-radius:4px;box-shadow:0 2px 4px rgba(0,0,0,.5);}    
+  /* =====  Error dialog  ===== */
+  #errDlg{
+    position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);
+    z-index:50;width:340px;padding:1rem 1.2rem;
+    background:var(--glass);backdrop-filter:blur(20px) saturate(160%);
+    border:1px solid rgba(255,255,255,.6);border-radius:12px;
+    box-shadow:0 8px 20px rgba(0,0,0,.55);
+  }
+  #errDlg h3{margin-bottom:.6rem;text-shadow:0 0 6px rgba(0,0,0,.8);}
+  #errDlg p{font-size:.9rem;text-shadow:0 0 5px rgba(0,0,0,.7);}
+  #errDlg button{
+    margin-top:1rem;padding:.3rem 1.2rem;font-size:.9rem;font-weight:600;
+    color:#000;background:#e1e1e1;border:1px solid #8f8f8f;border-radius:4px;cursor:pointer;
+    box-shadow:inset 0 1px 0 #fff;
+  }
+  #errDlg button:hover{background:#f5f5f5;}
 
-    #toast{position:fixed;bottom:20px;right:20px;padding:1rem 1.5rem;background:var(--glass);backdrop-filter:blur(12px) saturate(150%);border:1px solid rgba(255,255,255,.6);border-radius:12px;box-shadow:0 4px 12px rgba(0,0,0,.5);display:none;}
+  /* =====  Toast  ===== */
+  #toast{
+    position:fixed;bottom:20px;right:20px;padding:1rem 1.5rem;
+    background:var(--glass);backdrop-filter:blur(12px) saturate(150%);
+    border:1px solid rgba(255,255,255,.6);border-radius:12px;
+    box-shadow:0 4px 12px rgba(0,0,0,.5);display:none;
+  }
   </style>
 </head>
 <body>
+  <!--  =====  Top banner  ===== -->
   <header><h1>Mitch &quot;Michelle&quot; Bentz</h1></header>
-  <div class="spacer"></div>
 
-  <!-- Desktop Icons -->
-  <a href="https://huxpmusic.com" target="_blank" rel="noopener" class="desktop-icon" style="top:120px;left:20px;"><img src="favicon.png" alt="HuxP Music"><span>HuxP Music</span></a>
-  <a href="https://shikitaigen.com" target="_blank" rel="noopener" class="desktop-icon" style="top:220px;left:20px;"><img src="favicon.png" alt="Shiki Taigen"><span>Shiki&nbsp;Taigen</span></a>
+  <!--  =====  Desktop shortcuts  ===== -->
+  <a href="https://huxpmusic.com" class="desktop-icon" data-tip="Visit huxpmusic.com." target="_blank" rel="noopener" style="top:120px;left:20px;">
+    <img src="shortcut.png" alt="huxpmusic.com"><span>huxpmusic.com</span>
+  </a>
+  <a href="https://shikitaigen.com" class="desktop-icon" data-tip="Visit shikitaigen.com." target="_blank" rel="noopener" style="top:220px;left:20px;">
+    <img src="shortcut.png" alt="shikitaigen.com"><span>shikitaigen.com</span>
+  </a>
 
-  <div id="wip">WIP!</div>
+  <!--  =====  Error dialog  ===== -->
+  <div id="errDlg">
+    <h3>Site Under Construction</h3>
+    <p>Thanks for visiting! I'm currently building my website; stay tuned for more.</p>
+    <button id="errOk">OK</button>
+  </div>
 
-  <!-- Info Panel -->
-  <section class="glass"><h2>Site Under Construction</h2><p>Thanks for visiting! I’m rebuilding this place with an Aero makeover—stay tuned for more.</p></section>
-
-  <!-- Draggable Last.fm Widget -->
+  <!--  =====  Draggable widgets  ===== -->
   <div class="widget" id="lastfm" style="top:120px;right:40px;">
-    <a href="https://www.last.fm/user/HuxP" target="_blank" rel="noopener"><img src="https://lastfm-recently-played.vercel.app/api?user=HuxP&nowplaying=true" width="350" alt="Now playing on Last.fm"></a>
+    <a href="https://www.last.fm/user/HuxP" target="_blank" rel="noopener">
+      <img src="https://lastfm-recently-played.vercel.app/api?user=HuxP&amp;nowplaying=true" width="350" alt="Now playing on Last.fm">
+    </a>
   </div>
 
-  <!-- Draggable Blinkies Widget -->
-  <div class="widget blinkies-widget" id="blinkies" style="top:400px;right:40px;">
-      <img src="https://adriansblinkiecollection.neocities.org/buttons/a106.jpg" alt="3DS">
-      <img src="https://adriansblinkiecollection.neocities.org/buttons/a112.gif" alt="Anti-AI">
-      <img src="https://adriansblinkiecollection.neocities.org/buttons/a58.gif" alt="Gay">
-      <img src="https://adriansblinkiecollection.neocities.org/buttons/e23.gif" alt="Nyan Cat">
+  <div class="widget blinkies-widget" id="blinkies" style="top:420px;right:40px;">
+    <img src="https://adriansblinkiecollection.neocities.org/buttons/a106.jpg" alt="3DS">
+    <img src="https://adriansblinkiecollection.neocities.org/buttons/a112.gif" alt="Anti-AI">
+    <img src="https://adriansblinkiecollection.neocities.org/buttons/a58.gif"  alt="This site is GAY">
+    <img src="https://adriansblinkiecollection.neocities.org/buttons/e23.gif"  alt="Nyan Cat">
   </div>
 
-  <!-- Start Button -->
+  <!--  =====  Start button & menu  ===== -->
   <button id="start-btn"><img src="start.png" alt="Start"></button>
 
-  <!-- Start Menu -->
-  <div id="start-menu"><div class="start-inner"><div class="start-left"><a href="https://www.last.fm/user/HuxP" target="_blank" rel="noopener">Last.fm</a><a href="https://www.instagram.com/huxpmusic" target="_blank" rel="noopener">Instagram</a><a href="https://pronouns.page/@HuxP" target="_blank" rel="noopener">Pronouns.page</a><a href="#" id="discord-link">Discord (copy)</a></div><div class="start-right"><div class="username">mitchbentz.com</div><a href="https://huxpmusic.com" target="_blank" rel="noopener">huxpmusic.com</a><a href="https://shikitaigen.com" target="_blank" rel="noopener">shikitaigen.com</a></div></div></div>
+  <div id="start-menu">
+    <div class="start-inner">
+      <!-- LEFT column: pinned apps -->
+      <div class="start-left">
+        <a href="https://www.last.fm/user/HuxP"            target="_blank" rel="noopener">Last.fm</a>
+        <a href="https://www.instagram.com/huxpmusic"      target="_blank" rel="noopener">Instagram</a>
+        <a href="https://pronouns.page/@HuxP"              target="_blank" rel="noopener">Pronouns.page</a>
+        <a href="#" id="discord-link">Discord</a>
+      </div>
 
-  <!-- Toast -->
+      <!-- RIGHT column: user pane -->
+      <div class="start-right">
+        <div class="username">mitchbentz.com</div>
+        <a href="#">Documents</a>
+        <a href="#">Pictures</a>
+        <a href="#">Music</a>
+        <a href="#">Computer</a>
+        <a href="#">Control Panel</a>
+        <a href="#">Devices and Printers</a>
+        <a href="#">Default Programs</a>
+        <a href="#">Help and Support</a>
+      </div>
+    </div>
+  </div>
+
+  <!--  =====  Toast  ===== -->
   <div id="toast">Discord username copied!</div>
 
-<script>
-// start menu toggle
-const startBtn=document.getElementById('start-btn');
-const startMenu=document.getElementById('start-menu');
-const discordLink=document.getElementById('discord-link');
-const toast=document.getElementById('toast');
-startBtn.addEventListener('click',e=>{e.stopPropagation();startMenu.style.display=startMenu.style.display==='block'?'none':'block';});
-document.addEventListener('click',()=>startMenu.style.display='none');
-discordLink.addEventListener('click',e=>{e.preventDefault();navigator.clipboard.writeText('huxpmusic').then(()=>{toast.style.display='block';setTimeout(()=>toast.style.display='none',2500);});});
+  <!--  =====  JS ===== -->
+  <script>
+  /* ---------- util: toast ---------- */
+  function toast(msg){
+    const t=document.getElementById('toast');
+    t.textContent=msg; t.style.display='block';
+    setTimeout(()=>t.style.display='none',3000);
+  }
 
-// draggable widgets
-function makeDraggable(el){let offsetX=0,offsetY=0,isDown=false;el.addEventListener('mousedown',e=>{isDown=true;offsetX=e.clientX-el.offsetLeft;offsetY=e.clientY-el.offsetTop;el.style.zIndex=40;});document.addEventListener('mousemove',e=>{if(!isDown) return;el.style.left=(e.clientX-offsetX)+'px';el.style.top=(e.clientY-offsetY)+'px';});document.addEventListener('mouseup',()=>{isDown=false;el.style.zIndex=20;});}
-makeDraggable(document.getElementById('lastfm'));
-makeDraggable(document.getElementById('blinkies'));
-</script>
+  /* ---------- dialog ---------- */
+  document.getElementById('errOk').onclick=()=>document.getElementById('errDlg').style.display='none';
+
+  /* ---------- Discord copy ---------- */
+  document.getElementById('discord-link').onclick=e=>{
+    e.preventDefault();
+    navigator.clipboard.writeText('huxpmusic')
+      .then(()=>toast('Discord username copied!'));
+  };
+
+  /* ---------- Start-menu toggle ---------- */
+  const startBtn=document.getElementById('start-btn');
+  const startMenu=document.getElementById('start-menu');
+  startBtn.onclick=()=>startMenu.style.display=
+    (startMenu.style.display==='block')?'none':'block';
+  document.addEventListener('click',e=>{
+    if(!startMenu.contains(e.target)&&e.target!==startBtn)
+      startMenu.style.display='none';
+  });
+
+  /* ---------- drag-n-drop for widgets ---------- */
+  document.querySelectorAll('.widget').forEach(w=>{
+    let offsetX=0,offsetY=0,isDown=false;
+    w.addEventListener('mousedown',e=>{
+      isDown=true;
+      offsetX=e.clientX-w.offsetLeft;
+      offsetY=e.clientY-w.offsetTop;
+      w.style.zIndex=40;               /* bring to front while dragging */
+    });
+    document.addEventListener('mousemove',e=>{
+      if(!isDown)return;
+      w.style.left=e.clientX-offsetX+'px';
+      w.style.top =e.clientY-offsetY+'px';
+    });
+    document.addEventListener('mouseup',()=>{isDown=false});
+  });
+  </script>
 </body>
 </html>
