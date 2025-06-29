@@ -3,109 +3,66 @@
 <head>
 <meta charset="UTF-8">
 <title>Mitch "Michelle" Bentz | Personal Site</title>
-
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;700&display=swap" rel="stylesheet">
 <link rel="icon" href="favicon.png" type="image/png" sizes="32x32">
-
 <style>
-:root{
-  --glass:rgba(255,255,255,.32);
-  --glass-dark:rgba(0,0,0,.35);
-  --taskbar:rgba(0,0,0,.28);
-}
+:root{--glass:rgba(255,255,255,.32);--glass-dark:rgba(0,0,0,.35);--taskbar:rgba(0,0,0,.28);}
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{height:100%}
-body{
-  font-family:'Segoe UI',sans-serif;
-  background:url('Img0_(Windows_7).jpg') center/cover fixed no-repeat;
-  color:#fff;overflow:hidden;position:relative;
-}
+body{font-family:'Segoe UI',sans-serif;background:url('Img0_(Windows_7).jpg') center/cover fixed no-repeat;color:#fff;overflow:hidden;position:relative}
 
-/* ---------- desktop shortcuts ---------- */
-.desktop-icon{
-  position:absolute;width:72px;display:flex;flex-direction:column;align-items:center;
-  font-size:.8rem;text-align:center;color:#fff;text-decoration:none;
-  text-shadow:0 0 6px #000}
+/* ---------- shortcuts ---------- */
+.desktop-icon{position:absolute;width:72px;display:flex;flex-direction:column;align-items:center;
+  font-size:.8rem;text-align:center;color:#fff;text-decoration:none;text-shadow:0 0 6px #000}
 .desktop-icon img{height:48px;width:48px;margin-bottom:.3rem}
-.desktop-icon:hover::before{
-  content:attr(data-tip);position:absolute;bottom:-24px;left:50%;transform:translateX(-50%);
-  white-space:nowrap;padding:.2rem .5rem;background:var(--glass-dark);
-  border:1px solid rgba(255,255,255,.45);border-radius:6px;font-size:.7rem;box-shadow:0 2px 6px #000}
+.desktop-icon:hover::before{content:attr(data-tip);position:absolute;bottom:-24px;left:50%;transform:translateX(-50%);
+  white-space:nowrap;padding:.2rem .5rem;background:var(--glass-dark);border:1px solid rgba(255,255,255,.45);
+  border-radius:6px;font-size:.7rem;box-shadow:0 2px 6px #000}
 
 /* ---------- widgets ---------- */
-.widget{
-  position:absolute;padding:.8rem;cursor:move;max-width:350px;
+.widget{position:absolute;padding:.8rem;cursor:move;max-width:350px;
   backdrop-filter:blur(20px) saturate(150%);background:var(--glass);
   border:1px solid rgba(255,255,255,.55);border-radius:14px;box-shadow:0 4px 12px #000a}
 .widget img{max-width:100%;display:block;pointer-events:none}
 .blinkies-widget img{height:31px;border-radius:4px;box-shadow:0 2px 4px #0008}
 
 /* ---------- taskbar ---------- */
-#taskbar{
-  position:fixed;left:0;right:0;bottom:0;height:54px;z-index:20;
+#taskbar{position:fixed;left:0;right:0;bottom:0;height:54px;z-index:20;
   background:linear-gradient(to top,var(--taskbar) 0%,rgba(0,0,0,.2) 100%);
-  border-top:1px solid rgba(255,255,255,.35);
-  backdrop-filter:blur(14px) saturate(160%);
-}
-
-/* Start orb */
-#start-btn{
-  position:absolute;bottom:1px;left:6px;z-index:30;border:none;background:none;cursor:pointer}
+  border-top:1px solid rgba(255,255,255,.35);backdrop-filter:blur(14px) saturate(160%)}
+#start-btn{position:absolute;bottom:1px;left:6px;border:none;background:none;cursor:pointer;z-index:30}
 #start-btn img{height:48px;width:48px;border-radius:50%;box-shadow:0 2px 6px #0006}
-
-/* Peek button */
-#peek{
-  position:absolute;right:0;bottom:0;width:10px;height:54px;
-  background:var(--glass-dark);border-left:1px solid rgba(255,255,255,.3);
-  transition:background .2s}
-#peek:hover{background:rgba(255,255,255,.4)}
-
-/* Tray */
-#tray{
-  position:absolute;right:148px;bottom:0;height:54px;
-  display:flex;align-items:center;gap:6px}
+#peek{position:absolute;right:0;bottom:0;width:10px;height:54px;background:var(--glass-dark);
+  border-left:1px solid rgba(255,255,255,.3);transition:background .2s}#peek:hover{background:rgba(255,255,255,.4)}
+#tray{position:absolute;right:148px;bottom:0;height:54px;display:flex;align-items:center;gap:6px}
 #tray img{height:16px;width:16px;filter:drop-shadow(0 0 3px #000)}
-
-/* Clock */
-#taskbar-clock{
-  position:absolute;right:20px;bottom:14px;line-height:1.1;text-align:right;
+#taskbar-clock{position:absolute;right:20px;bottom:14px;line-height:1.1;text-align:right;
   font-size:11px;font-weight:600;text-shadow:0 0 5px #000;pointer-events:none}
 
 /* ---------- Start menu ---------- */
-#start-menu{
-  position:fixed;bottom:66px;left:4px;width:360px;height:500px;display:none;z-index:25;
+#start-menu{position:fixed;bottom:66px;left:4px;width:380px;height:500px;display:none;z-index:25;
   background:var(--glass);backdrop-filter:blur(18px) saturate(150%);
   border:1px solid rgba(255,255,255,.6);border-radius:12px;box-shadow:0 6px 14px #0009;font-size:.9rem}
   .start-inner{display:flex;height:calc(100% - 64px)}
   .start-left{flex:1;padding:1rem 1.2rem;border-right:1px solid rgba(255,255,255,.4);overflow:auto}
-  .start-right{width:154px;padding:1rem 1.4rem;overflow:hidden}
+  .start-right{width:174px;padding:1rem 1.4rem;overflow:hidden}
   .start-left a,.start-right a{display:block;color:#fff;padding:.25rem 0;font-weight:600;
     text-decoration:none;text-shadow:0 0 5px #000}
   .start-left a:hover,.start-right a:hover{color:#9cd3ff}
-  .userpic{
-    width:60px;height:60px;border-radius:4px;margin:0 auto .8rem;
+  .userpic{width:60px;height:60px;border-radius:4px;margin:0 auto .8rem;
     border:2px solid rgba(255,255,255,.9);box-shadow:0 0 6px #000a}
-  .start-right .username{
-    font-weight:700;color:#fff;text-shadow:0 0 5px #000;margin:.6rem 0 1rem}
-
-/* bottom strip */
-.start-bottom{
-  display:flex;align-items:center;gap:.6rem;padding:.6rem 1rem 1rem;border-top:1px solid rgba(255,255,255,.4)}
+  .start-right .username{font-weight:700;color:#fff;text-shadow:0 0 5px #000;margin:.6rem 0 1rem}
+.start-bottom{display:flex;align-items:center;gap:.6rem;padding:.6rem 1rem 1rem;border-top:1px solid rgba(255,255,255,.4)}
 .start-bottom span{font-size:.8rem;font-weight:600;white-space:nowrap}
-.start-bottom input{
-  flex:1;height:22px;border:1px solid #6d6d6d;border-radius:2px;padding:0 4px;
-  background:#fff;color:#000;font-size:.78rem}
-.shutdown{
-  background:#e6e6e6;border:1px solid #7f7f7f;border-radius:2px;padding:.2rem .45rem; /* slimmer */
+.start-bottom input{flex:1;height:22px;border:1px solid #6d6d6d;border-radius:2px;padding:0 4px;background:#fff;color:#000;font-size:.78rem}
+.shutdown{background:#e6e6e6;border:1px solid #7f7f7f;border-radius:2px;padding:.2rem .35rem;
   font-size:.78rem;font-weight:600;color:#000;display:flex;align-items:center;gap:.3rem;cursor:pointer}
-.shutdown:hover{background:#f5f5f5}
-.shutdown::after{content:"▼";font-size:.55rem;margin-top:-2px}
+.shutdown:hover{background:#f5f5f5}.shutdown::after{content:"▼";font-size:.55rem;margin-top:-2px}
 
 /* ---------- toast ---------- */
-#toast{
-  position:fixed;bottom:70px;right:20px;display:none;padding:1rem 1.5rem;
+#toast{position:fixed;bottom:70px;right:20px;display:none;padding:1rem 1.5rem;
   background:var(--glass);backdrop-filter:blur(12px) saturate(150%);
   border:1px solid rgba(255,255,255,.6);border-radius:12px;box-shadow:0 4px 12px #0008}
 </style>
@@ -131,12 +88,11 @@ body{
     <img src="https://lastfm-recently-played.vercel.app/api?user=HuxP&amp;nowplaying=true" width="350" alt="Now playing on Last.fm">
   </a>
 </div>
-
 <div class="widget blinkies-widget" id="blinkies" style="top:420px;right:40px;">
   <img src="https://adriansblinkiecollection.neocities.org/buttons/a106.jpg" alt="3DS">
   <img src="https://adriansblinkiecollection.neocities.org/buttons/a112.gif" alt="Anti-AI">
-  <img src="https://adriansblinkiecollection.neocities.org/buttons/a58.gif" alt="GAY">
-  <img src="https://adriansblinkiecollection.neocities.org/buttons/e23.gif" alt="Nyan Cat">
+  <img src="https://adriansblinkiecollection.neocities.org/buttons/a58.gif"  alt="GAY">
+  <img src="https://adriansblinkiecollection.neocities.org/buttons/e23.gif"  alt="Nyan Cat">
 </div>
 
 <!-- Taskbar -->
@@ -164,62 +120,33 @@ body{
     </div>
   </div>
   <div class="start-bottom">
-    <span>All Programs ▶</span>
-    <input type="text" placeholder="Search programs and files">
+    <span>All Programs ▶</span><input type="text" placeholder="Search programs and files">
     <div class="shutdown">Shut&nbsp;down</div>
   </div>
 </div>
 
-<!-- Toast -->
 <div id="toast">Discord username copied!</div>
 
 <script>
-/* toast */
-const toast=(msg)=>{
-  const t=document.getElementById('toast');
-  t.textContent=msg;t.style.display='block';
-  setTimeout(()=>t.style.display='none',3000);
-};
+const toast=m=>{const t=document.getElementById('toast');t.textContent=m;t.style.display='block';setTimeout(()=>t.style.display='none',3e3)}
 
 /* Discord copy */
-document.getElementById('discord-link').onclick=e=>{
-  e.preventDefault();
-  navigator.clipboard.writeText('huxpmusic').then(()=>toast('Discord username copied!'));
-};
+document.getElementById('discord-link').onclick=e=>{e.preventDefault();navigator.clipboard.writeText('huxpmusic').then(()=>toast('Discord username copied!'))}
 
-/* Start menu toggle */
-const startBtn=document.getElementById('start-btn'),startMenu=document.getElementById('start-menu');
-startBtn.addEventListener('click',e=>{
-  e.stopPropagation();
-  startMenu.style.display=(startMenu.style.display==='block')?'none':'block';
-});
-startMenu.addEventListener('click',e=>e.stopPropagation());
-document.addEventListener('click',()=>startMenu.style.display='none');
+/* Start menu */
+const startBtn=document.getElementById('start-btn'),startMenu=document.getElementById('start-menu')
+startBtn.addEventListener('click',e=>{e.stopPropagation();startMenu.style.display=startMenu.style.display==='block'?'none':'block'})
+startMenu.addEventListener('click',e=>e.stopPropagation());document.addEventListener('click',()=>startMenu.style.display='none')
 
 /* Clock */
-function updateClock(){
-  const n=new Date();
-  document.getElementById('taskbar-clock').innerHTML=
-    `${n.toLocaleTimeString([], {hour:'numeric',minute:'2-digit'})}<br>${n.toLocaleDateString()}`;
-}
-updateClock();setInterval(updateClock,1000);
+const clock=()=>{const n=new Date();document.getElementById('taskbar-clock').innerHTML=`${n.toLocaleTimeString([], {hour:'numeric',minute:'2-digit'})}<br>${n.toLocaleDateString()}`};clock();setInterval(clock,1e3)
 
 /* Drag widgets bounded */
-const BAR_H=54;
-document.querySelectorAll('.widget').forEach(w=>{
-  let ox=0,oy=0,drag=false,locked=false;
-  w.addEventListener('mousedown',e=>{
-    drag=true;ox=e.clientX-w.offsetLeft;oy=e.clientY-w.offsetTop;w.style.zIndex=40;
-    if(!locked){w.style.width=w.offsetWidth+'px';w.style.height=w.offsetHeight+'px';locked=true;}
-  });
-  document.addEventListener('mousemove',e=>{
-    if(!drag)return;
-    let L=Math.min(Math.max(0,e.clientX-ox),innerWidth-w.offsetWidth),
-        T=Math.min(Math.max(0,e.clientY-oy),innerHeight-BAR_H-w.offsetHeight);
-    w.style.left=L+'px';w.style.top=T+'px';
-  });
-  document.addEventListener('mouseup',()=>{drag=false;w.style.zIndex=30});
-});
+const BAR_H=54
+document.querySelectorAll('.widget').forEach(w=>{let ox=0,oy=0,d=false,l=false
+  w.addEventListener('mousedown',e=>{d=true;ox=e.clientX-w.offsetLeft;oy=e.clientY-w.offsetTop;w.style.zIndex=40;if(!l){w.style.width=w.offsetWidth+'px';w.style.height=w.offsetHeight+'px';l=true}})
+  document.addEventListener('mousemove',e=>{if(!d)return;let L=Math.min(Math.max(0,e.clientX-ox),innerWidth-w.offsetWidth),T=Math.min(Math.max(0,e.clientY-oy),innerHeight-BAR_H-w.offsetHeight);w.style.left=L+'px';w.style.top=T+'px'})
+  document.addEventListener('mouseup',()=>{d=false;w.style.zIndex=30})})
 </script>
 </body>
 </html>
