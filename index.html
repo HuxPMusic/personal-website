@@ -2,129 +2,129 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Mitch &quot;Michelle&quot; Bentz | Personal Site</title>
-  <!-- Google Font for a soft, rounded look -->
+  <title>Mitch "Michelle" Bentz | Personal Site</title>
+  <!-- Windows‑7 style font -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;700&display=swap" rel="stylesheet">
   <!-- Favicon -->
   <link rel="icon" href="favicon.png" type="image/png" sizes="32x32">
   <style>
-    /* === Base layout === */
+    /* ===== Win‑7 Aero variables ===== */
     :root{
-      --ribbon-bg:rgba(255,255,255,.25); /* translucent white */
-      --accent-pink:#ffbbf4;
-      --accent-yellow:#ffeb3b;
+      --glass:rgba(255,255,255,.3);          /* generic glass */
+      --win7-accent:#1b80d6;                 /* taskbar blue */
+      --win7-glow:#89c9ff;                   /* hover glow */
     }
-    html,body{
-      margin:0;
-      height:100%;
-    }
+
+    /* ===== Reset / Layout ===== */
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%;}
     body{
-      display:flex;
-      flex-direction:column;
-      justify-content:flex-start;
-      align-items:center;
-      background:url('background.png') center/cover no-repeat fixed;
-      font-family:'Fredoka',sans-serif;
-      text-shadow:0 0 10px rgba(0,0,0,.25);
+      font-family:'Segoe UI',sans-serif;
+      display:flex;flex-direction:column;align-items:center;
+      background:url('background.png') center/cover fixed no-repeat;
       color:#fff;
     }
 
-    /* === Sticky header navigation === */
+    /* ===== Aero header ===== */
     header{
-      position:fixed;
-      top:0;left:0;right:0;
-      z-index:10;
-      display:flex;
-      justify-content:center;
-      backdrop-filter:blur(6px);
-      background:rgba(0,0,0,.35);
-      padding:.6rem 0;
+      position:fixed;top:0;left:0;right:0;z-index:10;
+      backdrop-filter:blur(12px) saturate(140%);
+      background:linear-gradient(to bottom,rgba(255,255,255,.55),rgba(255,255,255,.15));
+      border-bottom:1px solid rgba(255,255,255,.4);
+      padding:.5rem 0;display:flex;justify-content:center;gap:2rem;
+      box-shadow:0 1px 6px rgba(0,0,0,.4);
     }
-    nav a{
-      margin:0 1rem;
-      color:#fff;
-      text-decoration:none;
-      font-weight:700;
-      letter-spacing:.03em;
-      transition:opacity .2s;
+    header a{
+      color:#fff;text-decoration:none;font-weight:700;letter-spacing:.02em;
+      text-shadow:0 0 6px rgba(0,0,0,.8);transition:color .2s;
     }
-    nav a:hover{opacity:.75;}
+    header a:hover{color:var(--win7-glow);}
 
-    /* push body down so marquee isn’t hidden behind header */
-    .spacer{height:3rem;}
+    /* spacer so content isn’t hidden */
+    .spacer{height:3.2rem}
 
-    /* === Marquee heading === */
+    /* ===== Marquee banner ===== */
     marquee{
-      width:100%;
-      font-size:4rem;
-      font-weight:700;
-      letter-spacing:.05em;
-      padding:.5rem 0;
-      background:var(--ribbon-bg);
-      backdrop-filter:blur(4px);
-      color:var(--accent-pink);
+      width:100%;font-size:4rem;font-weight:700;letter-spacing:.04em;
+      backdrop-filter:blur(6px) saturate(160%);
+      background:linear-gradient(to bottom,rgba(0,0,0,.5),rgba(0,0,0,.2));
+      color:var(--win7-glow);text-shadow:0 0 8px rgba(0,0,0,.9);
+      border-top:1px solid rgba(255,255,255,.35);border-bottom:1px solid rgba(255,255,255,.35);
     }
 
-    /* === Flashing WIP tag === */
+    /* ===== Flashing WIP ===== */
     #wip{
-      margin:2.5rem 0 .5rem;
-      font-size:2.5rem;
-      color:var(--accent-yellow);
-      animation:flash 1s steps(2,start) infinite;
+      margin:2rem 0 1rem;font-size:2rem;font-weight:700;color:var(--win7-accent);
+      animation:flash 1s steps(2,start) infinite;text-shadow:0 0 8px rgba(0,0,0,.8);
     }
     @keyframes flash{0%,49%{opacity:0;}50%,100%{opacity:1;}}
 
-    /* === Info card === */
-    .card{
-      max-width:520px;
+    /* ===== Glassy panels (shared) ===== */
+    .glass{
+      width:min(90%,600px);
       padding:1.5rem 2rem;
-      margin-bottom:4rem;
-      background:var(--ribbon-bg);
-      backdrop-filter:blur(6px);
-      border-radius:1rem;
-      box-shadow:0 0 12px rgba(0,0,0,.25);
+      backdrop-filter:blur(20px) saturate(150%);
+      background:var(--glass);
+      border:1px solid rgba(255,255,255,.55);
+      border-radius:18px;
+      box-shadow:0 8px 16px rgba(0,0,0,.4);
+      text-align:center;
     }
-    .card h2{margin-top:0;color:#fff;}
-    .card p{margin:.6rem 0 0;line-height:1.45;}
-    .card a{color:var(--accent-pink);text-decoration:none;font-weight:700;}
-    .card a:hover{text-decoration:underline;}
+    .glass h2{margin-bottom:.75rem;text-shadow:0 0 6px rgba(0,0,0,.8);}
+    .glass p{margin:.65rem 0;line-height:1.5;text-shadow:0 0 4px rgba(0,0,0,.7);}
+    .glass a{color:var(--win7-glow);font-weight:700;text-decoration:none;}
+    .glass a:hover{text-decoration:underline;color:#fff;}
 
-    /* small devices */
+    /* ===== Blinkies row ===== */
+    .blinkies{display:flex;justify-content:center;flex-wrap:wrap;gap:.5rem;margin-top:1rem;}
+    .blinkies img{height:31px;border-radius:4px;box-shadow:0 2px 4px rgba(0,0,0,.5);}
+
+    /* ===== Responsive tweaks ===== */
     @media(max-width:600px){
-      marquee{font-size:2.5rem;}
-      #wip{font-size:1.8rem;}
-      .card{margin:1rem 1rem 3rem;padding:1rem 1.25rem;}
+      marquee{font-size:2.4rem;}
+      #wip{font-size:1.5rem;}
+      .glass{padding:1rem 1.25rem;}
     }
   </style>
 </head>
 <body>
-  <!-- === top nav === -->
+  <!-- **** Aero Glass Header **** -->
   <header>
-    <nav>
-      <a href="https://huxpmusic.com" target="_blank" rel="noopener">HuxP Music</a>
-      <a href="https://shikitaigen.com" target="_blank" rel="noopener">Shiki Taigen Blog</a>
-      <!-- add future links here -->
-    </nav>
+    <a href="https://huxpmusic.com" target="_blank" rel="noopener">HuxP Music</a>
+    <a href="https://shikitaigen.com" target="_blank" rel="noopener">Shiki Taigen Blog</a>
   </header>
 
   <div class="spacer"></div>
 
-  <!-- === marquee intro === -->
-  <marquee behavior="scroll" direction="left" scrollamount="10">
-    Mitch &quot;Michelle&quot; Bentz
-  </marquee>
+  <!-- **** Moving Banner **** -->
+  <marquee behavior="scroll" direction="left" scrollamount="8">Mitch "Michelle" Bentz</marquee>
 
-  <!-- === flashing WIP === -->
+  <!-- **** Flashing WIP **** -->
   <div id="wip">WIP!</div>
 
-  <!-- === info section === -->
-  <section class="card">
+  <!-- **** Information Panel **** -->
+  <section class="glass">
     <h2>Site Under Construction</h2>
-    <p>Thanks for stopping by! I’m still piecing things together..</p>
-    <p>In the meantime, you can follow my finished projects at <a href="https://huxpmusic.com" target="_blank" rel="noopener">HuxP</a> and dive into Shiki Taigen resources at <a href="https://shikitaigen.com" target="_blank" rel="noopener">shikitaigen.com</a>.</p>
-    <p>Stay tuned—more sections (portfolio, contact, and extras) will roll out soon!</p>
+    <p>Thanks for stopping by! I’m still piecing things together./p>
+    <p>Meanwhile, check out finished releases at <a href="https://huxpmusic.com" target="_blank" rel="noopener">HuxP Music</a> and all things Shiki Taigen at <a href="https://shikitaigen.com" target="_blank" rel="noopener">shikitaigen.com</a>.</p>
+    <p>Stay tuned for more!</p>
+  </section>
+
+  <!-- **** Last.fm Widget & Blinkies **** -->
+  <section class="glass" style="margin-top:2rem;">
+    <h2>Currently Playing</h2>
+    <a href="https://www.last.fm/user/HuxP" target="_blank" rel="noopener">
+      <img src="https://lastfm-recently-played.vercel.app/api?user=HuxP&nowplaying=true" width="350" alt="Now playing on Last.fm">
+    </a>
+
+    <div class="stamps">
+      <img src="https://adriansblinkiecollection.neocities.org/buttons/a106.jpg" alt="Nintendo 3DS">
+      <img src="https://adriansblinkiecollection.neocities.org/buttons/a112.gif" alt="Anti‑AI">
+      <img src="https://adriansblinkiecollection.neocities.org/buttons/a58.gif" alt="This site is GAY">
+      <img src="https://adriansblinkiecollection.neocities.org/buttons/e23.gif" alt="Nyan Cat">
+    </div>
   </section>
 </body>
 </html>
