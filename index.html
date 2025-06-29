@@ -10,7 +10,6 @@
 <link rel="icon" href="favicon.png" type="image/png" sizes="32x32">
 
 <style>
-/* ---------- palette & reset ---------- */
 :root{
   --glass:rgba(255,255,255,.32);
   --glass-dark:rgba(0,0,0,.35);
@@ -25,82 +24,72 @@ body{
   color:#fff;overflow:hidden;position:relative;
 }
 
-/* ---------- desktop shortcuts ---------- */
-.desktop-icon{
-  position:absolute;width:72px;display:flex;flex-direction:column;align-items:center;
-  font-size:.8rem;text-align:center;color:#fff;text-decoration:none;
-  text-shadow:0 0 6px rgba(0,0,0,.8)}
+/* ---------- shortcuts ---------- */
+.desktop-icon{position:absolute;width:72px;display:flex;flex-direction:column;align-items:center;
+  font-size:.8rem;text-align:center;color:#fff;text-decoration:none;text-shadow:0 0 6px #000}
 .desktop-icon img{height:48px;width:48px;margin-bottom:.3rem}
-.desktop-icon:hover::before{
-  content:attr(data-tip);position:absolute;bottom:-24px;left:50%;transform:translateX(-50%);
-  white-space:nowrap;padding:.2rem .5rem;background:var(--glass-dark);
-  border:1px solid rgba(255,255,255,.45);border-radius:6px;font-size:.7rem;
-  box-shadow:0 2px 6px rgba(0,0,0,.6)}
+.desktop-icon:hover::before{content:attr(data-tip);position:absolute;bottom:-24px;left:50%;
+  transform:translateX(-50%);white-space:nowrap;padding:.2rem .5rem;background:var(--glass-dark);
+  border:1px solid rgba(255,255,255,.45);border-radius:6px;font-size:.7rem;box-shadow:0 2px 6px #000}
 
-/* ---------- draggable widgets ---------- */
-.widget{
-  position:absolute;padding:.8rem;cursor:move;max-width:350px;
+/* ---------- widgets ---------- */
+.widget{position:absolute;padding:.8rem;cursor:move;max-width:350px;
   backdrop-filter:blur(20px) saturate(150%);background:var(--glass);
-  border:1px solid rgba(255,255,255,.55);border-radius:14px;
-  box-shadow:0 4px 12px rgba(0,0,0,.45)}
+  border:1px solid rgba(255,255,255,.55);border-radius:14px;box-shadow:0 4px 12px #000a}
 .widget img{max-width:100%;display:block;pointer-events:none}
-.blinkies-widget img{height:31px;border-radius:4px;box-shadow:0 2px 4px rgba(0,0,0,.5)}
+.blinkies-widget img{height:31px;border-radius:4px;box-shadow:0 2px 4px #0008}
 
 /* ---------- taskbar ---------- */
-#taskbar{
-  position:fixed;left:0;right:0;bottom:0;height:40px;z-index:20;
-  backdrop-filter:blur(14px) saturate(160%);
-  background:linear-gradient(to top,var(--taskbar) 0%,rgba(0,0,0,.18) 100%);
-  border-top:1px solid rgba(255,255,255,.35);
-}
+#taskbar{position:fixed;left:0;right:0;bottom:0;height:48px;z-index:20;
+  background:linear-gradient(to top,var(--taskbar) 0%,rgba(0,0,0,.2) 100%);
+  border-top:1px solid rgba(255,255,255,.35);backdrop-filter:blur(14px) saturate(160%)}
 
-/* ---------- start orb ---------- */
-#start-btn{
-  position:absolute;bottom:4px;left:6px;border:none;background:none;cursor:pointer;z-index:30}
-#start-btn img{height:48px;width:48px;border-radius:50%;box-shadow:0 2px 6px rgba(0,0,0,.6)}
+/* start orb */
+#start-btn{position:absolute;bottom:0;left:6px;border:none;background:none;cursor:pointer;z-index:30}
+#start-btn img{height:48px;width:48px;border-radius:50%;box-shadow:0 2px 6px #0006}
+
+/* show-desktop / peek */
+#peek{position:absolute;right:0;bottom:0;width:10px;height:48px;background:var(--glass-dark);
+  border-left:1px solid rgba(255,255,255,.3);transition:background .2s}
+#peek:hover{background:rgba(255,255,255,.4)}
+
+/* system tray */
+#tray{position:absolute;right:90px;bottom:0;height:48px;display:flex;align-items:center;gap:6px}
+#tray img{height:16px;width:16px;filter:drop-shadow(0 0 3px #000)}
+
+/* clock */
+#taskbar-clock{position:absolute;right:12px;bottom:4px;line-height:1.1;text-align:center;
+  font-size:11px;font-weight:600;text-shadow:0 0 5px #000;pointer-events:none}
 
 /* ---------- start menu ---------- */
-#start-menu{
-  position:fixed;bottom:50px;left:4px;width:320px;display:none;z-index:25;
-  backdrop-filter:blur(18px) saturate(150%);background:var(--glass);
-  border:1px solid rgba(255,255,255,.6);border-radius:12px;
-  box-shadow:0 6px 14px rgba(0,0,0,.6);font-size:.9rem}
-  .start-inner{display:flex}
-  .start-left{flex:1;padding:1rem 1.2rem;border-right:1px solid rgba(255,255,255,.4)}
-  .start-right{width:120px;padding:1rem}
-  .start-left a,.start-right a{
-    display:block;color:#fff;padding:.3rem 0;font-weight:600;text-decoration:none;
-    text-shadow:0 0 5px rgba(0,0,0,.7)}
+#start-menu{position:fixed;bottom:58px;left:4px;width:320px;height:450px;display:none;z-index:25;
+  background:var(--glass);backdrop-filter:blur(18px) saturate(150%);
+  border:1px solid rgba(255,255,255,.6);border-radius:12px;box-shadow:0 6px 14px #0009;font-size:.9rem}
+  .start-inner{display:flex;height:calc(100% - 60px)}
+  .start-left{flex:1;padding:1rem 1.2rem;border-right:1px solid rgba(255,255,255,.4);overflow:auto}
+  .start-right{width:120px;padding:1rem;overflow:auto}
+  .start-left a,.start-right a{display:block;color:#fff;padding:.3rem 0;font-weight:600;
+    text-decoration:none;text-shadow:0 0 5px #000}
   .start-left a:hover,.start-right a:hover{color:var(--win7-glow)}
   .start-right .username{font-weight:700;color:var(--win7-glow);margin-bottom:.6rem}
   /* bottom row */
-  .start-bottom{
-    display:flex;align-items:center;gap:.6rem;padding:.6rem 1rem 1rem 1rem;
+  .start-bottom{display:flex;align-items:center;gap:.6rem;padding:.6rem 1rem 1rem 1rem;
     border-top:1px solid rgba(255,255,255,.4)}
-    .start-bottom input{
-      flex:1;height:22px;border:1px solid #6d6d6d;border-radius:2px;padding:0 4px;
-      background:#fff;color:#000;font-size:.78rem}
-    .shutdown{
-      background:#e6e6e6;border:1px solid #7f7f7f;border-radius:2px;
-      padding:.2rem .6rem;font-size:.78rem;font-weight:600;color:#000;
-      display:flex;align-items:center;gap:.3rem;cursor:pointer}
-      .shutdown:hover{background:#f5f5f5}
-      .shutdown::after{content:"▼";font-size:.55rem;margin-top:-2px}
-
-/* ---------- taskbar clock ---------- */
-#taskbar-clock{
-  position:absolute;right:12px;bottom:4px;line-height:1.1;text-align:center;
-  font-size:11px;font-weight:600;text-shadow:0 0 5px rgba(0,0,0,.7);pointer-events:none}
+  .start-bottom span{font-size:.8rem;font-weight:600;white-space:nowrap}
+  .start-bottom input{flex:1;height:22px;border:1px solid #6d6d6d;border-radius:2px;padding:0 4px;
+    background:#fff;color:#000;font-size:.78rem}
+  .shutdown{background:#e6e6e6;border:1px solid #7f7f7f;border-radius:2px;padding:.2rem .6rem;
+    font-size:.78rem;font-weight:600;color:#000;display:flex;align-items:center;gap:.3rem;cursor:pointer}
+  .shutdown:hover{background:#f5f5f5}
+  .shutdown::after{content:"▼";font-size:.55rem;margin-top:-2px}
 
 /* ---------- error dialog ---------- */
-#errDlg{
-  position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);
-  width:340px;padding:1rem 1.2rem;z-index:50;
-  backdrop-filter:blur(20px) saturate(160%);background:var(--glass);
-  border:1px solid rgba(255,255,255,.6);border-radius:12px;
-  box-shadow:0 8px 20px rgba(0,0,0,.55)}
-#errDlg h3{margin-bottom:.6rem;text-shadow:0 0 6px rgba(0,0,0,.8)}
-#errDlg p{font-size:.9rem;text-shadow:0 0 5px rgba(0,0,0,.7)}
+#errDlg{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);
+  width:340px;padding:1rem 1.2rem;z-index:50;background:var(--glass);
+  backdrop-filter:blur(20px) saturate(160%);border:1px solid rgba(255,255,255,.6);
+  border-radius:12px;box-shadow:0 8px 20px #000a}
+#errDlg h3{margin-bottom:.6rem;text-shadow:0 0 6px #000}
+#errDlg p{font-size:.9rem;text-shadow:0 0 5px #000}
 #errDlg button{margin-top:1rem;padding:.3rem 1.2rem;font-size:.9rem;font-weight:600;
   background:#e1e1e1;color:#000;border:1px solid #8f8f8f;border-radius:4px;cursor:pointer;
   box-shadow:inset 0 1px 0 #fff}
@@ -108,8 +97,8 @@ body{
 
 /* ---------- toast ---------- */
 #toast{position:fixed;bottom:60px;right:20px;display:none;padding:1rem 1.5rem;
-  backdrop-filter:blur(12px) saturate(150%);background:var(--glass);
-  border:1px solid rgba(255,255,255,.6);border-radius:12px;box-shadow:0 4px 12px rgba(0,0,0,.5)}
+  background:var(--glass);backdrop-filter:blur(12px) saturate(150%);
+  border:1px solid rgba(255,255,255,.6);border-radius:12px;box-shadow:0 4px 12px #0008}
 </style>
 </head>
 <body>
@@ -145,10 +134,17 @@ body{
 
 <!-- Taskbar -->
 <div id="taskbar">
-  <!-- Start orb -->
   <button id="start-btn"><img src="start.png" alt="Start"></button>
-  <!-- Clock -->
+
+  <!-- fake tray -->
+  <div id="tray">
+    <img src="tray1.png" alt="">
+    <img src="tray2.png" alt="">
+    <img src="tray3.png" alt="">
+  </div>
+
   <div id="taskbar-clock"></div>
+  <div id="peek" title="Show desktop"></div>
 </div>
 
 <!-- Start menu -->
@@ -172,9 +168,8 @@ body{
       <a href="#">Help and Support</a>
     </div>
   </div>
-  <!-- Bottom row -->
   <div class="start-bottom">
-    <span style="font-size:.8rem;font-weight:600;white-space:nowrap;">All&nbsp;Programs ▶</span>
+    <span>All Programs ▶</span>
     <input type="text" placeholder="Search programs and files">
     <div class="shutdown">Shut&nbsp;down</div>
   </div>
@@ -200,7 +195,7 @@ document.getElementById('discord-link').onclick=e=>{
   navigator.clipboard.writeText('huxpmusic').then(()=>toast('Discord username copied!'));
 };
 
-/* Start menu toggle */
+/* Start menu */
 const startBtn=document.getElementById('start-btn');
 const startMenu=document.getElementById('start-menu');
 startBtn.addEventListener('click',e=>{
@@ -210,18 +205,17 @@ startBtn.addEventListener('click',e=>{
 startMenu.addEventListener('click',e=>e.stopPropagation());
 document.addEventListener('click',()=>{startMenu.style.display='none';});
 
-/* live clock */
+/* Clock */
 function updateClock(){
   const now=new Date();
   const time=now.toLocaleTimeString([], {hour:'numeric',minute:'2-digit'});
   const date=now.toLocaleDateString();
   document.getElementById('taskbar-clock').innerHTML=`${time}<br>${date}`;
 }
-updateClock();
-setInterval(updateClock,1000);
+updateClock();setInterval(updateClock,1000);
 
-/* drag widgets – bounded to desktop */
-const TASKBAR_H=40;
+/* Drag widgets (bounded) */
+const BAR_H=48;
 document.querySelectorAll('.widget').forEach(w=>{
   let ox=0,oy=0,drag=false,locked=false;
   w.addEventListener('mousedown',e=>{
@@ -231,12 +225,9 @@ document.querySelectorAll('.widget').forEach(w=>{
   });
   document.addEventListener('mousemove',e=>{
     if(!drag)return;
-    let newL=e.clientX-ox;
-    let newT=e.clientY-oy;
-    /* clamp to viewport */
-    newL=Math.max(0,Math.min(window.innerWidth - w.offsetWidth ,newL));
-    newT=Math.max(0,Math.min(window.innerHeight-TASKBAR_H - w.offsetHeight,newT));
-    w.style.left=newL+'px';w.style.top=newT+'px';
+    let L=Math.min(Math.max(0,e.clientX-ox),window.innerWidth-w.offsetWidth);
+    let T=Math.min(Math.max(0,e.clientY-oy),window.innerHeight-BAR_H-w.offsetHeight);
+    w.style.left=L+'px';w.style.top=T+'px';
   });
   document.addEventListener('mouseup',()=>{drag=false;w.style.zIndex=30});
 });
